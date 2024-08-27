@@ -8,10 +8,12 @@ class Product(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), nullable=False)
     pokemon_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('pokemon.id')), nullable=False)
     ability = db.Column(db.String(500), nullable=False)
-    item = db.Column(db.String(500), nullable=False)
+    item = db.Column(db.String(500))
     nature = db.Column(db.String(500), nullable=False)
     game = db.Column(db.String(500), nullable=False)
     shiny = db.Column(db.Boolean)
+    generation = db.Column(db.Integer, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
 
     user = db.relationship('User', back_populates='products')

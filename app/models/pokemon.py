@@ -6,7 +6,6 @@ class Pokemon(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(500), nullable=false)
-    generation = db.Column(db.String(500), nullable=false)
     pokemon_img = db.Column(db.String(1000), nullable=false)
 
     def to_dict(self):
@@ -18,4 +17,3 @@ class Pokemon(db.Model):
         }
 
     products = db.relationship('Product', back_populates='pokemon')
-    
