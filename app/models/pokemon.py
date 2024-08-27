@@ -5,14 +5,13 @@ class Pokemon(db.Model):
     __tablename__ = 'pokemon'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(500), nullable=false)
-    pokemon_img = db.Column(db.String(1000), nullable=false)
+    name = db.Column(db.String(500), nullable=False)
+    pokemon_img = db.Column(db.String(1000), nullable=False)
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "generation": self.generation,
             "pokemon_img": self.pokemon_img
         }
 

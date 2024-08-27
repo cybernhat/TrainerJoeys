@@ -7,6 +7,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), nullable=False)
     pokemon_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('pokemon.id')), nullable=False)
+    img_url = db.Column(db.String(1000), nullable=False)
     ability = db.Column(db.String(500), nullable=False)
     item = db.Column(db.String(500))
     nature = db.Column(db.String(500), nullable=False)
@@ -27,6 +28,7 @@ class Product(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "pokemon_id": self.pokemon_id,
+            "img_url": self.img_url,
             "ability": self.ability,
             "item": self.item,
             "nature": self.nature,
@@ -34,8 +36,6 @@ class Product(db.Model):
             "shiny": self.shiny,
             "price": self.price,
             "user": self.user.to_dict() if self.user else None,
-            "pokemon": self.pokemon.to_dict() if self.pokemon else None,
             "reviews": [review.to_dict() for review in self.reviews],
             "cart_items": [cart_item.to_dict() for cart_item in self.cart_items],
-            "watchlists": [watchlist.to_dict() for watchlist in self.watchlists]
         }
