@@ -6,7 +6,7 @@ from .review import seed_reviews, undo_reviews
 from .cart import seed_carts, undo_carts
 from .watchlist import seed_watchlists, undo_watchlists
 
-from app.models import environment
+from app.models import db, environment, SCHEMA
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
