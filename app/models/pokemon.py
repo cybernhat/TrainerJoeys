@@ -4,6 +4,9 @@ from sqlalchemy.schema import ForeignKey
 class Pokemon(db.Model):
     __tablename__ = 'pokemon'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(500), nullable=False)
     pokemon_img = db.Column(db.String(1000), nullable=False)

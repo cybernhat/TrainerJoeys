@@ -5,6 +5,9 @@ from sqlalchemy.schema import ForeignKey
 class CartItem(db.Model):
     __tablename__ = "cart_items"
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+        
     id = db.Column(db.Integer, primary_key=True)
     cart_id = db.Column(
         db.Integer,

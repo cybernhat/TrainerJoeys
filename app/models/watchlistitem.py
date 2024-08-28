@@ -5,6 +5,9 @@ from sqlalchemy.schema import ForeignKey
 class WatchlistItem(db.Model):
     __tablename__ = "watchlist_items"
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     watchlist_id = db.Column(
         db.Integer,
