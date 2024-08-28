@@ -7,3 +7,4 @@ from .cartitem import CartItem
 from .cart import Cart
 from .review import Review
 from .watchlist import Watchlist
+from .watchlistitem import WatchlistItem

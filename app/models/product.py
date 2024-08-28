@@ -29,6 +29,7 @@ class Product(db.Model):
     reviews = db.relationship("Review", back_populates="product")
     cart_items = db.relationship("CartItem", back_populates="product")
     watchlists = db.relationship("Watchlist", back_populates="product")
+    watchlist_items = db.relationship("WatchlistItem", back_populates="product")
 
     def to_dict(self):
         return {

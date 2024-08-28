@@ -10,5 +10,4 @@ class Watchlist(db.Model):
 
     user = db.relationship('User', back_populates='watchlist')
     product = db.relationship('Product', back_populates='watchlists')
-
-    
+    watchlist_items = db.relationship('WatchlistItem', back_populates='watchlist')

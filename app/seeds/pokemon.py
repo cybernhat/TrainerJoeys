@@ -15,7 +15,7 @@ def fetch_pokemon_data(generation):
         if not pokemon_name:
             continue
 
-        # Fetch Pokémon details to get sprites
+        # Fetch Pokémon details to get sprites and types
         pokemon_details_url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_name}/"
         details_response = requests.get(pokemon_details_url)
         details_data = details_response.json()
@@ -26,11 +26,24 @@ def fetch_pokemon_data(generation):
         official_artwork = other.get("official-artwork", {})
         pokemon_img = official_artwork.get("front_default", "default_image_url")
 
+        # Fetch Pokémon types
+        types = [
+            type_info["type"]["name"] for type_info in details_data.get("types", [])
+        ]
+        type_1 = types[0] if len(types) > 0 else None
+        type_2 = types[1] if len(types) > 1 else None
+
         # Extract Pokémon ID from URL (assuming it ends with ID number)
         pokemon_id = pokemon_url.split("/")[-2]
 
         pokemon_list.append(
-            {"id": pokemon_id, "name": pokemon_name, "pokemon_img": pokemon_img}
+            {
+                "id": pokemon_id,
+                "name": pokemon_name,
+                "pokemon_img": pokemon_img,
+                "type_1": type_1,
+                "type_2": type_2,
+            }
         )
 
     # Sort Pokémon list by ID
@@ -44,7 +57,12 @@ def seed_pokemon():
     all_pokemon = fetch_pokemon_data(1)
 
     for pokemon in all_pokemon:
-        new_pokemon = Pokemon(name=pokemon["name"], pokemon_img=pokemon["pokemon_img"])
+        new_pokemon = Pokemon(
+            name=pokemon["name"],
+            pokemon_img=pokemon["pokemon_img"],
+            type_1=pokemon["type_1"],
+            type_2=pokemon["type_2"],
+        )
         db.session.add(new_pokemon)
 
     db.session.commit()

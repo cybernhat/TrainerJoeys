@@ -2,13 +2,13 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.schema import ForeignKey
 
 
-class CartItem(db.Model):
-    __tablename__ = "cart_items"
+class WatchlistItem(db.Model):
+    __tablename__ = "watchlist_items"
 
     id = db.Column(db.Integer, primary_key=True)
-    cart_id = db.Column(
+    watchlist_id = db.Column(
         db.Integer,
-        db.ForeignKey(add_prefix_for_prod("carts.id"), ondelete="CASCADE"),
+        db.ForeignKey(add_prefix_for_prod("watchlists.id"), ondelete="CASCADE"),
         nullable=False,
     )
     product_id = db.Column(
@@ -17,5 +17,5 @@ class CartItem(db.Model):
         nullable=False,
     )
 
-    cart = db.relationship("Cart", back_populates="cart_items")
-    product = db.relationship("Product", back_populates="cart_items")
+    watchlist = db.relationship("Watchlist", back_populates="watchlist_items")
+    product = db.relationship("Product", back_populates="watchlist_items")
