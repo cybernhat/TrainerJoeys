@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .pokemon import seed_pokemon, undo_pokemon
 from .product import seed_products, undo_products
 from .review import seed_reviews, undo_reviews
+from .cart import seed_carts, undo_carts
 from app.models import environment
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -21,10 +22,12 @@ def seed():
         undo_pokemon()
         undo_products()
         undo_reviews()
+        undo_carts()
     seed_users()
     seed_pokemon()
     seed_products()
     seed_reviews()
+    seed_carts()
     # Add other seed functions here
 
 
@@ -34,5 +37,6 @@ def undo():
     undo_users()
     undo_pokemon()
     undo_products()
-    undo_reviews
+    undo_reviews()
+    undo_carts()
     # Add other undo functions here
