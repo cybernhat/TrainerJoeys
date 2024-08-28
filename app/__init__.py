@@ -11,6 +11,8 @@ from .seeds import seed_commands
 from .config import Config
 from .api.pokemon_routes import pokemon_routes
 from .api.product_routes import product_routes
+from .api.cart_routes import cart_routes
+from .api.review_routes import review_routes
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 
@@ -32,6 +34,8 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(pokemon_routes, url_prefix='/api/pokemon')
 app.register_blueprint(product_routes, url_prefix="/api/products")
+app.register_blueprint(cart_routes, url_prefix='/api/cart')
+app.register_blueprint(review_routes, url_prefix='/api/reviews')
 db.init_app(app)
 Migrate(app, db)
 

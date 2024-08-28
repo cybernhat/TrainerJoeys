@@ -16,6 +16,7 @@ def get_all_products():
 
     return jsonify(products_list)
 
+
 @product_routes.route("/<int:product_id>", methods=["GET"])
 def get_product_by_id(product_id):
     product = Product.query.get(product_id)
@@ -25,7 +26,8 @@ def get_product_by_id(product_id):
     else:
         return jsonify({"message": "Product not found"}), 404
 
-@product_routes.route('/<int:product_id>/reviews', methods=["GET"])
+
+@product_routes.route("/<int:product_id>/reviews", methods=["GET"])
 def get_reviews_by_product_id(product_id):
     product = Product.query.get(product_id)
 
@@ -40,3 +42,57 @@ def get_reviews_by_product_id(product_id):
         reviews_list.append(review_data)
 
     return jsonify(reviews_list)
+
+
+# @product_routes.route('/create', methods=["POST"])
+# @login_required
+# def create_product():
+#     continue
+
+
+@review_routes.route("/<int:product_id>/reviews/create", methods=["POST"])
+@login_required
+def post_review(product_id):
+    form = reviewForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        description = form.data["description"]
+        thumbs_up = form.data["thumbs_up"]
+        thumbs_down = form.data["thumbs_down"]
+
+        new_review = Review(
+            user_id=current_user.id,
+            product_id=product_id,
+            description=description,
+            thumbs_up=thumbs_up,
+            thumbs_down=thumbs_down,
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+
+        return {"review": new_review.to_dict()}, 201
+
+    return {"errors": form.errors}, 400
+
+
+@review_routes.route(
+    "/<int:product_id>/reviews/<int:review_id>/delete", methods=["DELETE"]
+)
+@login_required
+def delete_Review(review_id):
+    review_to_delete = Review.query.get(review_id)
+
+    if not review_to_delete:
+        return jsonify({"message": "Review not found"}), 404
+
+    if review_to_delete.user_id != current_user.id:
+        return jsonify({"message": "Unauthorized"}), 403
+
+    db.session.delete(review_to_delete)
+    db.commit()
+
+    return jsonify(
+        {"message": f"Successfully deleted review {review_id}", "reviewId": review_id}
+    ), 200
