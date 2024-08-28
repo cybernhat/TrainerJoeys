@@ -7,7 +7,7 @@ class Product(db.Model):
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-        
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
         db.Integer,
@@ -31,7 +31,6 @@ class Product(db.Model):
     pokemon = db.relationship("Pokemon", back_populates="products")
     reviews = db.relationship("Review", back_populates="product")
     cart_items = db.relationship("CartItem", back_populates="product")
-    watchlists = db.relationship("Watchlist", back_populates="product")
     watchlist_items = db.relationship("WatchlistItem", back_populates="product")
 
     def to_dict(self):

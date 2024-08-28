@@ -50,7 +50,7 @@ def get_reviews_by_product_id(product_id):
 #     continue
 
 
-@review_routes.route("/<int:product_id>/reviews/create", methods=["POST"])
+@product_routes.route("/<int:product_id>/reviews/create", methods=["POST"])
 @login_required
 def post_review(product_id):
     form = reviewForm()
@@ -77,7 +77,7 @@ def post_review(product_id):
     return {"errors": form.errors}, 400
 
 
-@review_routes.route(
+@product_routes.route(
     "/<int:product_id>/reviews/<int:review_id>/delete", methods=["DELETE"]
 )
 @login_required

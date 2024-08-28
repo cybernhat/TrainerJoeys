@@ -65,6 +65,11 @@ def sign_up():
         )
         db.session.add(shopping_cart)
 
+        watchlist = Watchlist(
+            user_id=user_id
+        )
+        db.session.add(watchlist)
+
         db.session.commit()
         login_user(user)
         return user.to_dict()
