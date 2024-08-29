@@ -8,3 +8,4 @@ from .cart import Cart
 from .review import Review
 from .watchlist import Watchlist
 from .watchlistitem import WatchlistItem
+from .productimage import ProductImage

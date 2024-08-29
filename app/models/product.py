@@ -6,7 +6,7 @@ class Product(db.Model):
     __tablename__ = "products"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
@@ -17,7 +17,7 @@ class Product(db.Model):
     pokemon_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("pokemon.id")), nullable=False
     )
-    img_url = db.Column(db.String(1000), nullable=False)
+    # img_url = db.Column(db.String(1000), nullable=False)
     ability = db.Column(db.String(500), nullable=False)
     item = db.Column(db.String(500))
     nature = db.Column(db.String(500), nullable=False)
@@ -33,6 +33,9 @@ class Product(db.Model):
     reviews = db.relationship("Review", back_populates="product")
     cart_items = db.relationship("CartItem", back_populates="product")
     watchlist_items = db.relationship("WatchlistItem", back_populates="product")
+    product_image = db.relationship(
+        "ProductImage", cascade="all, delete-orphan", back_populates="product"
+    )
 
     def to_dict(self):
         return {
@@ -52,7 +55,6 @@ class Product(db.Model):
                 if self.user
                 else None
             ),
-            "reviews": [
-                review.to_dict() for review in self.reviews
-            ],
+            "reviews": [review.to_dict() for review in self.reviews],
+            "product_image": product_image.to_dict(),
         }

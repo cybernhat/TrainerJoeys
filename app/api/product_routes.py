@@ -6,7 +6,7 @@ from app.forms import ProductForm, ReviewForm
 
 product_routes = Blueprint("products", __name__)
 
-@product_routes.route("/")
+@product_routes.route("/", methods=["GET"])
 def get_all_products():
     products = Product.query.all()
 

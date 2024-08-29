@@ -5,6 +5,7 @@ from .product import seed_products, undo_products
 from .review import seed_reviews, undo_reviews
 from .cart import seed_carts, undo_carts
 from .watchlist import seed_watchlists, undo_watchlists
+from .productimage import seed_productimages, undo_productimages
 
 from app.models import db, environment, SCHEMA
 # Creates a seed group to hold our commands
@@ -23,11 +24,13 @@ def seed():
         undo_users()
         undo_pokemon()
         undo_products()
+        undo_productimages()
         undo_reviews()
         undo_carts()
         undo_watchlists()
     seed_users()
     seed_pokemon()
+    seed_productimages()
     seed_products()
     seed_reviews()
     seed_carts()
@@ -44,4 +47,5 @@ def undo():
     undo_reviews()
     undo_carts()
     undo_watchlists()
+    undo_productimages()
     # Add other undo functions here
