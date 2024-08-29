@@ -4,6 +4,8 @@ from app.models import db, Product, Review
 from app.api.aws_utils import upload_file_to_s3, get_unique_filename, ALLOWED_EXTENSIONS
 from app.forms import ProductForm, ReviewForm
 
+product_routes = Blueprint("products", __name__)
+
 @product_routes.route("/")
 def get_all_products():
     products = Product.query.all()
@@ -89,7 +91,7 @@ def post_product():
         return jsonify({"message": "Failed to create product", "error": str(e)}), 500
 
 
-@product_routes.route("/<int:product_id/edit", methods=["PUT"])
+@product_routes.route("/<int:product_id>/edit", methods=["PUT"])
 @login_required
 def update_product(product_id):
     # Fetch the product to be updated

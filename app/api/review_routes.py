@@ -17,7 +17,7 @@ def get_all_reviews():
     return jsonify(reviews_list)
 
 
-@product_routes.route("/<int:review_id>/edit", methods=["PUT"])
+@review_routes.route("/<int:review_id>/edit", methods=["PUT"])
 @login_required
 def edit_review_by_id(review_id):
     data = request.json
@@ -45,7 +45,7 @@ def edit_review_by_id(review_id):
         200,
     )
 
-@product_routes.route(
+@review_routes.route(
     "/<int:review_id>/delete", methods=["DELETE"]
 )
 @login_required
