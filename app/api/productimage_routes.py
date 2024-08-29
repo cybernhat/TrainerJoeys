@@ -6,9 +6,9 @@ from app.forms import ProductImageForm
 
 productimage_routes = Blueprint("productimages", __name__)
 
-@cover_art_routes.route("/post", methods=["POST"])
+@productimage_routes.route("/post", methods=["POST"])
 @login_required
-def upload_cover_art():
+def upload_productimage():
     product_id = request.form.get("product_id")
 
     img_url = request.files.get("img_url")
