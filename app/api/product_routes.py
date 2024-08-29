@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import current_user, login_required
 from app.models import db, Product, Review
-from app.s3_helpers import upload_file_to_s3, get_unique_filename
+from app.api.aws_utils import upload_file_to_s3, get_unique_filename, ALLOWED_EXTENSIONS
 from app.forms import ProductForm, ReviewForm
 
 @product_routes.route("/")
@@ -183,4 +183,3 @@ def post_review(product_id):
         return {"review": new_review.to_dict()}, 201
 
     return {"errors": form.errors}, 400
-
