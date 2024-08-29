@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import current_user, login_required
 from app.models import db, Product, Review
-from app.api.aws_utils import upload_file_to_s3, get_unique_filename, ALLOWED_EXTENSIONS
 from app.forms import ProductForm, ReviewForm
 
 product_routes = Blueprint("products", __name__)
+
 
 @product_routes.route("/", methods=["GET"])
 def get_all_products():
@@ -30,55 +30,22 @@ def get_product_by_id(product_id):
 
 @product_routes.route("/create", methods=["POST"])
 def post_product():
-    if "image" not in request.files:
-        return jsonify({"message": "Image is required"}), 400
+    form = ProductForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    image = request.files["image"]
-
-    if not image:
-        return jsonify({"message": "No image provided"}), 400
-
-    image.filename = get_unique_filename(image.filename)
-    upload = upload_file_to_s3(image)
-
-    if "url" not in upload:
-        return jsonify({"message": "Image upload failed", "error": upload}), 500
-
-    img_url = upload["url"]
-
-    # Collect other product data from the request
-    ability = request.form.get("ability")
-    item = request.form.get("item")
-    nature = request.form.get("nature")
-    game = request.form.get("game")
-    shiny = request.form.get("shiny", False)
-    generation = request.form.get("generation")
-    quantity = request.form.get("quantity")
-    price = request.form.get("price")
-    description = request.form.get("description")
-    pokemon_id = request.form.get("pokemon_id")
-
-    # Validate that all required fields are present
-    if not all(
-        [ability, nature, game, generation, quantity, price, description, pokemon_id]
-    ):
-        return jsonify({"message": "Missing required fields"}), 400
-
-    try:
-        # Create new Product instance
+    if form.validate_on_submit():
         new_product = Product(
             user_id=current_user.id,
-            pokemon_id=pokemon_id,
-            img_url=img_url,
-            ability=ability,
-            item=item,
-            nature=nature,
-            game=game,
-            shiny=bool(shiny),
-            generation=generation,
-            quantity=quantity,
-            price=price,
-            description=description,
+            pokemon_id=request.form.get("pokemon_id"),
+            ability=form.ability.data,
+            item=form.item.data,
+            nature=form.nature.data,
+            game=form.game.data,
+            shiny=form.shiny.data,
+            generation=form.generation.data,
+            quantity=form.quantity.data,
+            price=form.price.data,
+            description=request.form.get("description"),
         )
 
         db.session.add(new_product)
@@ -86,51 +53,40 @@ def post_product():
 
         return jsonify(new_product.to_dict()), 201
 
-    except Exception as e:
-        db.session.rollback()
-        return jsonify({"message": "Failed to create product", "error": str(e)}), 500
+    # If form validation fails, return errors
+    return jsonify({"message": "Validation failed", "errors": form.errors}), 400
 
 
 @product_routes.route("/<int:product_id>/edit", methods=["PUT"])
 @login_required
 def update_product(product_id):
-    # Fetch the product to be updated
-    product = Product.query.get(product_id)
+    form = ProductForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if not product:
-        return jsonify({"message": "Product not found"}), 404
+        return jsonify({"message": "product does not exist"}), 404
 
     if product.user_id != current_user.id:
-        return jsonify({"message": "Unauthorized"}), 403
+        return jsonify({"message": "unauthorized"}), 403
 
-    # Check if a new image is provided
-    if "image" in request.files:
-        image = request.files["image"]
-        if image:
-            image.filename = get_unique_filename(image.filename)
-            upload = upload_file_to_s3(image)
-            if "url" not in upload:
-                return jsonify({"message": "Image upload failed", "error": upload}), 500
-            product.img_url = upload["url"]  # Update the image URL
+    if form.validate_on_submit():
+        # Update product fields
+        product.pokemon_id = request.form.get("pokemon_id", product.pokemon_id)
+        product.ability = form.ability.data
+        product.item = form.item.data
+        product.nature = form.nature.data
+        product.game = form.game.data
+        product.shiny = form.shiny.data
+        product.generation = form.generation.data
+        product.quantity = form.quantity.data
+        product.price = form.price.data
+        product.description = request.form.get("description", product.description)
 
-    # Update other product fields
-    product.ability = request.form.get("ability", product.ability)
-    product.item = request.form.get("item", product.item)
-    product.nature = request.form.get("nature", product.nature)
-    product.game = request.form.get("game", product.game)
-    product.shiny = bool(request.form.get("shiny", product.shiny))
-    product.generation = request.form.get("generation", product.generation)
-    product.quantity = request.form.get("quantity", product.quantity)
-    product.price = request.form.get("price", product.price)
-    product.description = request.form.get("description", product.description)
-    product.pokemon_id = request.form.get("pokemon_id", product.pokemon_id)
-
-    try:
         db.session.commit()
+
         return jsonify(product.to_dict()), 200
-    except Exception as e:
-        db.session.rollback()
-        return jsonify({"message": "Failed to update product", "error": str(e)}), 500
+
+
 
 @product_routes.route("/<int:product_id>", methods=["DELETE"])
 def delete_product_by_id(product_id):

@@ -4,7 +4,6 @@ from wtforms.validators import DataRequired, URL, Optional, NumberRange
 
 
 class ProductForm(FlaskForm):
-    img_url = StringField("Image URL", validators=[DataRequired(), URL(message="Invalid URL")])
     ability = StringField("Ability", validators=[DataRequired()])
     item = StringField("Item", validators=[Optional()])
     nature = StringField("Nature", validators=[DataRequired()])
@@ -15,4 +14,5 @@ class ProductForm(FlaskForm):
     )
     quantity = IntegerField("Quantity", validators=[DataRequired()])
     price = DecimalField("Price", validators=[DataRequired()], places=2)
+    description = StringField("Description", validators=[DataRequired()])
     submit = SubmitField("Submit")
