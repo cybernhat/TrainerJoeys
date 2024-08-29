@@ -26,6 +26,7 @@ def seed_products():
             generation=3,
             quantity=10,
             price=500,
+            description="Max Spa and Speed EV. High Spa and HP IV."
         ),
         Product(
             user_id=user.id,
@@ -39,6 +40,7 @@ def seed_products():
             generation=1,
             quantity=20,
             price=200,
+            description="Max Spa and Speed EV. Pretty bad IV."
         ),
         Product(
             user_id=user.id,
@@ -52,6 +54,7 @@ def seed_products():
             generation=2,
             quantity=5,
             price=1500,
+            description="EV TRAINED FOR HP AND SPD. VERY HIGH HP IV!"
         ),
         Product(
             user_id=user.id,
@@ -65,6 +68,7 @@ def seed_products():
             generation=3,
             quantity=8,
             price=800,
+            description="MAX IV AND MAX EV. BUY NOW VERY STRONG POKEMON!"
         ),
         Product(
             user_id=user.id,
@@ -78,6 +82,7 @@ def seed_products():
             generation=1,
             quantity=3,
             price=3000,
+            description="Selling my baby because I need cash. EV trained with max Spa and Speed. 31 Spa IV."
         ),
     ]
 

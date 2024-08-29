@@ -26,6 +26,7 @@ class Product(db.Model):
     generation = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
+    description = db.Column(db.String(500), nullable=False)
 
     user = db.relationship("User", back_populates="products")
     pokemon = db.relationship("Pokemon", back_populates="products")
