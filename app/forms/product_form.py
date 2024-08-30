@@ -15,4 +15,11 @@ class ProductForm(FlaskForm):
     quantity = IntegerField("Quantity", validators=[DataRequired()])
     price = DecimalField("Price", validators=[DataRequired()], places=2)
     description = StringField("Description", validators=[DataRequired()])
+
+    # New fields for moves
+    move_1 = StringField("Move 1", validators=[DataRequired()])
+    move_2 = StringField("Move 2", validators=[Optional()])
+    move_3 = StringField("Move 3", validators=[Optional()])
+    move_4 = StringField("Move 4", validators=[Optional()])
+
     submit = SubmitField("Submit")

@@ -28,6 +28,12 @@ class Product(db.Model):
     price = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
+    # New columns for moves
+    move_1 = db.Column(db.String(1000), nullable=False)
+    move_2 = db.Column(db.String(1000))
+    move_3 = db.Column(db.String(1000))
+    move_4 = db.Column(db.String(1000))
+
     user = db.relationship("User", back_populates="products")
     pokemon = db.relationship("Pokemon", back_populates="products")
     reviews = db.relationship("Review", back_populates="product")
@@ -45,8 +51,11 @@ class Product(db.Model):
             "pokemon": (self.pokemon.to_dict() if self.pokemon else None),
             "ability": self.ability,
             "item": self.item,
+            "description": self.description,
+            "generation": self.generation,
             "nature": self.nature,
             "game": self.game,
+            "quantity": self.quantity,
             "shiny": self.shiny,
             "price": self.price,
             "user": (
@@ -56,4 +65,8 @@ class Product(db.Model):
             ),
             "reviews": [review.to_dict() for review in self.reviews],
             "product_image": [image.to_dict() for image in self.product_image],
+            "move_1": self.move_1,
+            "move_2": self.move_2,
+            "move_3": self.move_3,
+            "move_4": self.move_4,
         }
