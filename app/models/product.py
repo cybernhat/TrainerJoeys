@@ -43,7 +43,6 @@ class Product(db.Model):
             "user_id": self.user_id,
             "pokemon_id": self.pokemon_id,
             "pokemon": (self.pokemon.to_dict() if self.pokemon else None),
-            "img_url": self.img_url,
             "ability": self.ability,
             "item": self.item,
             "nature": self.nature,
@@ -56,5 +55,5 @@ class Product(db.Model):
                 else None
             ),
             "reviews": [review.to_dict() for review in self.reviews],
-            "product_image": product_image.to_dict(),
+            "product_image": [image.to_dict() for image in self.product_image],
         }

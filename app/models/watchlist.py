@@ -12,4 +12,10 @@ class Watchlist(db.Model):
 
     user = db.relationship('User', back_populates='watchlist')
     watchlist_items = db.relationship('WatchlistItem', back_populates='watchlist')
-    
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'watchlist_items': [item.to_dict() for item in self.watchlist_items]  # Assuming WatchlistItem has a to_dict method
+        }
