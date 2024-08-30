@@ -4,6 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import HomePage from '../components/HomePage/HomePage';
 import UploadPicture from '../components/Product/CreateProduct';
+import OneProduct from '../components/Product/OneProduct';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/upload",
         element: <UploadPicture/>
+      },
+      {
+        path: "/products/:productId",
+        element: <OneProduct/>
       }
     ],
   },

@@ -1,4 +1,5 @@
-const GET_PRODUCTS = "products/getproducts";
+const GET_PRODUCTS = "products/getProducts";
+const GET_ONE_PRODUCT = "products/getOneProduct"
 // const CREATE_PRODUCT_IMAGE = "poducts/postProductImages"
 
 const getProducts = (products) => ({
@@ -6,12 +7,16 @@ const getProducts = (products) => ({
     products,
 });
 
+const getOneProduct = product => ({
+    type: GET_ONE_PRODUCT,
+    product
+})
 // const createProductImage = (image) => ({
 //     type: CREATE_PRODUCT_IMAGE,
 //     image
 // })
 
-export const getAllProducts = () => async (dispatch) => {
+export const fetchAllProducts = () => async (dispatch) => {
     const response = await fetch("/api/products");
 
     if (response.ok) {
@@ -21,6 +26,15 @@ export const getAllProducts = () => async (dispatch) => {
     }
 };
 
+export const fetchOneProduct = (productId) => async dispatch => {
+    const response = await fetch(`/api/products/${productId}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getOneProduct(data))
+        dispatch()
+    }
+}
 // export const postProductImage = (image) => async (dispatch) => {
 //     const response = await fetch("/api/productimages/post", {
 //       method: "POST",
@@ -47,6 +61,12 @@ function productsReducer(state = initialState, action) {
                 newState[product.id] = action.product;
             });
             return newState;
+        }
+        case GET_ONE_PRODUCT: {
+            return {
+                ...state,
+                [action.product.id]: action.product
+            }
         }
         default:
             return state;
