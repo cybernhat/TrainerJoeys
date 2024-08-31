@@ -15,8 +15,6 @@ const OneProduct = () => {
         productPokemon?.name.slice(1);
     const productImage = product?.product_image;
 
-    console.log("product", product);
-
     useEffect(() => {
         dispatch(productActions.fetchOneProduct(productId));
     }, [dispatch, productId]);
@@ -35,13 +33,13 @@ const OneProduct = () => {
                             />
                             <div className="type-container">
                                 <h3
-                                    className={`pokemon-type ${productPokemon.type_1.toLowerCase()}`}
+                                    className={`pokemon-type ${productPokemon?.type_1.toLowerCase()}`}
                                 >
                                     {productPokemon.type_1}
                                 </h3>
                                 {productPokemon.type_2 && (
                                     <h3
-                                        className={`pokemon-type ${productPokemon.type_2.toLowerCase()}`}
+                                        className={`pokemon-type ${productPokemon?.type_2.toLowerCase()}`}
                                     >
                                         {productPokemon.type_2}
                                     </h3>
@@ -61,12 +59,15 @@ const OneProduct = () => {
                                 <h2>Nature</h2>
                                 <h3>{product.nature}</h3>
                             </div>
-                        <div className='moves-container'>
-                            <h3>{product.move_1}</h3>
-                            <h3>{product.move_2}</h3>
-                            <h3>{product.move_3}</h3>
-                            <h3>{product.move_4}</h3>
-                        </div>
+                            <div className="shiny-container">
+                                <h2>Shiny: {product.shiny ? "Yes" : "No"}</h2>
+                            </div>
+                            <div className="moves-container">
+                                <h3>{product.move_1}</h3>
+                                <h3>{product.move_2}</h3>
+                                <h3>{product.move_3}</h3>
+                                <h3>{product.move_4}</h3>
+                            </div>
                         </div>
                         <div className="game-data-container">
                             <div className="name-container">

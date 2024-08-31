@@ -8,7 +8,7 @@ class ProductForm(FlaskForm):
     item = StringField("Item", validators=[Optional()])
     nature = StringField("Nature", validators=[DataRequired()])
     game = StringField("Game", validators=[DataRequired()])
-    shiny = BooleanField("Shiny", validators=[DataRequired()])
+    shiny = BooleanField("Shiny", validators=[Optional()])
     generation = IntegerField(
         "Generation", validators=[DataRequired(), NumberRange(min=1, max=9)]
     )

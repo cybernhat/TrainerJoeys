@@ -4,9 +4,11 @@ import "./Navigation.css";
 
 function Navigation() {
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
+    <ul className='navigation-bar'>
+      <li className='button'>
+        <NavLink to="/">
+        <img id='home-icon' src='../../../official_logo.png' alt='Home'/>
+        </NavLink>
       </li>
 
       <li>

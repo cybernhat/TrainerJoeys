@@ -17,5 +17,4 @@ def get_all_pokemon():
         species_data = species.to_dict()
         pokemon_list.append(species_data)
 
-    print("HELLO WORLD")
     return jsonify(pokemon_list)

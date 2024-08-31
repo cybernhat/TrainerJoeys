@@ -1,3 +1,17 @@
 .profile-dropdown {
   position: absolute;
 }
+
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 100px;
+  border-bottom: 1px solid black;
+  list-style-type: none;
+}
+
+#home-icon {
+  width: 300px;
+  height: 100px;
+  padding-left: -50px;
+}

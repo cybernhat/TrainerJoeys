@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
         element: <SignupFormPage />,
       },
       {
-        path: "/upload",
+        path: "/products/upload",
         element: <UploadPicture/>
       },
       {

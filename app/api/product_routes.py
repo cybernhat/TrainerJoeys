@@ -30,31 +30,41 @@ def get_product_by_id(product_id):
 
 @product_routes.route("/create", methods=["POST"])
 def post_product():
-    form = ProductForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
+    data = request.json  # Get the JSON data from the request
 
-    if form.validate_on_submit():
-        new_product = Product(
-            user_id=current_user.id,
-            pokemon_id=request.form.get("pokemon_id"),
-            ability=form.ability.data,
-            item=form.item.data,
-            nature=form.nature.data,
-            game=form.game.data,
-            shiny=form.shiny.data,
-            generation=form.generation.data,
-            quantity=form.quantity.data,
-            price=form.price.data,
-            description=request.form.get("description"),
-        )
+    # Validate the data if needed
+    if not data:
+        return jsonify({"message": "No data provided"}), 400
 
+    # You may want to manually handle validation or use a schema validation library
+    shiny = data.get('shiny', False)  # Default to False if not provided
+
+    new_product = Product(
+        user_id=current_user.id,
+        pokemon_id=data.get("pokemon_id"),
+        ability=data.get("ability"),
+        item=data.get("item"),
+        nature=data.get("nature"),
+        game=data.get("game"),
+        shiny=shiny,
+        generation=data.get("generation"),
+        quantity=data.get("quantity"),
+        price=data.get("price"),
+        description=data.get("description"),
+        move_1=data.get("move_1"),
+        move_2=data.get("move_2"),
+        move_3=data.get("move_3"),
+        move_4=data.get("move_4"),
+    )
+
+    try:
         db.session.add(new_product)
         db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": "Database error", "error": str(e)}), 500
 
-        return jsonify(new_product.to_dict()), 201
-
-    # If form validation fails, return errors
-    return jsonify({"message": "Validation failed", "errors": form.errors}), 400
+    return jsonify(new_product.to_dict()), 201
 
 
 @product_routes.route("/<int:product_id>/edit", methods=["PUT"])
@@ -63,11 +73,14 @@ def update_product(product_id):
     form = ProductForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
+    # Find the product by ID
+    product = Product.query.get(product_id)
+
     if not product:
-        return jsonify({"message": "product does not exist"}), 404
+        return jsonify({"message": "Product does not exist"}), 404
 
     if product.user_id != current_user.id:
-        return jsonify({"message": "unauthorized"}), 403
+        return jsonify({"message": "Unauthorized"}), 403
 
     if form.validate_on_submit():
         # Update product fields
@@ -82,10 +95,18 @@ def update_product(product_id):
         product.price = form.price.data
         product.description = request.form.get("description", product.description)
 
+        # Update new move fields
+        product.move_1 = form.move_1.data
+        product.move_2 = form.move_2.data
+        product.move_3 = form.move_3.data
+        product.move_4 = form.move_4.data
+
         db.session.commit()
 
         return jsonify(product.to_dict()), 200
 
+    # If form validation fails, return errors
+    return jsonify({"message": "Validation failed", "errors": form.errors}), 400
 
 
 @product_routes.route("/<int:product_id>", methods=["DELETE"])

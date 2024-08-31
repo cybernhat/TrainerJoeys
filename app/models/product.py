@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.schema import ForeignKey
-
+from sqlalchemy import Numeric
 
 class Product(db.Model):
     __tablename__ = "products"
@@ -25,7 +25,7 @@ class Product(db.Model):
     shiny = db.Column(db.Boolean)
     generation = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(Numeric(10,2), nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
     # New columns for moves

@@ -39,7 +39,7 @@ def seed_products():
         item="Charcoal",
         nature="Brave",
         game="FireRed",
-        shiny=False,
+        shiny=True,
         generation=3,
         quantity=10,
         price=500,
