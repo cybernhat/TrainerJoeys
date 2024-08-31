@@ -70,9 +70,6 @@ def post_product():
 @product_routes.route("/<int:product_id>/edit", methods=["PUT"])
 @login_required
 def update_product(product_id):
-    form = ProductForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-
     # Find the product by ID
     product = Product.query.get(product_id)
 
@@ -82,31 +79,26 @@ def update_product(product_id):
     if product.user_id != current_user.id:
         return jsonify({"message": "Unauthorized"}), 403
 
-    if form.validate_on_submit():
-        # Update product fields
-        product.pokemon_id = request.form.get("pokemon_id", product.pokemon_id)
-        product.ability = form.ability.data
-        product.item = form.item.data
-        product.nature = form.nature.data
-        product.game = form.game.data
-        product.shiny = form.shiny.data
-        product.generation = form.generation.data
-        product.quantity = form.quantity.data
-        product.price = form.price.data
-        product.description = request.form.get("description", product.description)
+    # Extract data from the JSON request body
+    data = request.get_json()
 
-        # Update new move fields
-        product.move_1 = form.move_1.data
-        product.move_2 = form.move_2.data
-        product.move_3 = form.move_3.data
-        product.move_4 = form.move_4.data
+    # Update product fields with the data from the request
+    product.item = data.get("item", product.item)
+    product.game = data.get("game", product.game)
+    product.generation = data.get("generation", product.generation)
+    product.price = data.get("price", product.price)
+    product.description = data.get("description", product.description)
 
-        db.session.commit()
+    # Update new move fields
+    product.move_1 = data.get("move_1", product.move_1)
+    product.move_2 = data.get("move_2", product.move_2)
+    product.move_3 = data.get("move_3", product.move_3)
+    product.move_4 = data.get("move_4", product.move_4)
 
-        return jsonify(product.to_dict()), 200
+    # Commit the changes to the database
+    db.session.commit()
 
-    # If form validation fails, return errors
-    return jsonify({"message": "Validation failed", "errors": form.errors}), 400
+    return jsonify(product.to_dict()), 200
 
 
 @product_routes.route("/<int:product_id>", methods=["DELETE"])

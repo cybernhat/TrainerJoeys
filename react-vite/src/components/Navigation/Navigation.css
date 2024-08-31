@@ -8,10 +8,26 @@
   padding-right: 100px;
   border-bottom: 1px solid black;
   list-style-type: none;
+  align-items: center
 }
 
 #home-icon {
-  width: 300px;
-  height: 100px;
-  padding-left: -50px;
+  width: 200px;
+  height: 80px;
+}
+
+.login-logout-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.login-button {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.logout-button {
+  text-decoration: none;
+  font-weight: bold
 }

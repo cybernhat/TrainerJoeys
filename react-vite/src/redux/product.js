@@ -1,6 +1,7 @@
 const GET_PRODUCTS = "products/getProducts";
 const GET_ONE_PRODUCT = "products/getOneProduct";
 const CREATE_PRODUCT = "products/createProduct";
+const EDIT_PRODUCT = 'products/editProduct'
 
 const getProducts = (products) => ({
     type: GET_PRODUCTS,
@@ -18,10 +19,14 @@ const createProduct = (product) => {
         product,
     };
 };
-// const createProductImage = (image) => ({
-//     type: CREATE_PRODUCT_IMAGE,
-//     image
-// })
+
+const editProduct = (product) => {
+    return {
+        type: EDIT_PRODUCT,
+        product
+    }
+}
+
 
 export const fetchAllProducts = () => async (dispatch) => {
     const response = await fetch("/api/products");

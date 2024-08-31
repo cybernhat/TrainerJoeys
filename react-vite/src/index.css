@@ -1,1 +1,12 @@
 /* TODO: Add sitewide styles */
+
+h1,
+h2,
+h3,
+h4,
+span,
+a,
+p {
+    font-weight: normal;
+    font-family: "Pixelify Sans", sans-serif;
+}

@@ -3,11 +3,14 @@ import * as productActions from "../../redux/product";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { NavLink } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import EditProduct from "./EditProduct";
 const OneProduct = () => {
     const { productId } = useParams();
     const dispatch = useDispatch();
 
+    const currUser = useSelector((state) => state.session.user);
     const product = useSelector((state) => state.product[productId]);
     const productPokemon = product?.pokemon; // Use optional chaining
     const productName =
@@ -22,6 +25,14 @@ const OneProduct = () => {
     return (
         <div id="product-page-container">
             <div id="product-container">
+                {currUser?.id === product?.user_id && (
+                    <OpenModalButton
+                        buttonText="Edit Product"
+                        modalComponent={<EditProduct />}
+                        className="edit-product-button"
+                        productId={product.id}
+                    />
+                )}
                 {productPokemon ? (
                     <div className="product-card">
                         <div className="pokemon-name-img-type-container">
