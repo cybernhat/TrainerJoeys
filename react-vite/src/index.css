@@ -10,3 +10,13 @@ p {
     font-weight: normal;
     font-family: "Pixelify Sans", sans-serif;
 }
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../public/wp11632132.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the background image */
+}

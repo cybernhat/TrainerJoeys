@@ -18,6 +18,7 @@ class Product(db.Model):
         db.Integer, db.ForeignKey(add_prefix_for_prod("pokemon.id")), nullable=False
     )
     # img_url = db.Column(db.String(1000), nullable=False)
+    level = db.Column(db.Integer, nullable=False)
     ability = db.Column(db.String(500), nullable=False)
     item = db.Column(db.String(500))
     nature = db.Column(db.String(500), nullable=False)
@@ -52,6 +53,7 @@ class Product(db.Model):
             "ability": self.ability,
             "item": self.item,
             "description": self.description,
+            "level": self.level,
             "generation": self.generation,
             "nature": self.nature,
             "game": self.game,

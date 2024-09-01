@@ -1,7 +1,8 @@
 const GET_PRODUCTS = "products/getProducts";
 const GET_ONE_PRODUCT = "products/getOneProduct";
 const CREATE_PRODUCT = "products/createProduct";
-const EDIT_PRODUCT = 'products/editProduct'
+const EDIT_PRODUCT = "products/editProduct";
+const DELETE_PRODUCT = "products/deleteProduct";
 
 const getProducts = (products) => ({
     type: GET_PRODUCTS,
@@ -20,13 +21,12 @@ const createProduct = (product) => {
     };
 };
 
-const editProduct = (product) => {
+const removeProduct = (productId) => {
     return {
-        type: EDIT_PRODUCT,
-        product
-    }
-}
-
+        type: DELETE_PRODUCT,
+        productId,
+    };
+};
 
 export const fetchAllProducts = () => async (dispatch) => {
     const response = await fetch("/api/products");
@@ -67,6 +67,20 @@ export const postProduct = (product) => async (dispatch) => {
         return error;
     }
 };
+
+export const deleteProduct = (productId) => async (dispatch) => {
+    const response = await fetch(`/api/products/${productId}/delete`, {
+        method: "DELETE",
+    });
+
+    if (response.ok) {
+        dispatch(removeProduct(productId));
+        return productId; // return the productId after successful deletion
+    } else {
+        const error = await response.json();
+        return error;
+    }
+};
 // export const postProductImage = (image) => async (dispatch) => {
 //     const response = await fetch("/api/productimages/post", {
 //       method: "POST",
@@ -89,7 +103,7 @@ function productsReducer(state = initialState, action) {
         case GET_PRODUCTS: {
             const newState = { ...state };
             action.products.forEach((product) => {
-                newState[product.id] = action.product;
+                newState[product.id] = product;
             });
             return newState;
         }
@@ -102,12 +116,16 @@ function productsReducer(state = initialState, action) {
         case CREATE_PRODUCT: {
             return {
                 ...state,
-                [action.product.id]: action.product
-            }
+                [action.product.id]: action.product,
+            };
+        }
+        case DELETE_PRODUCT: {
+            const newState = { ...state };
+            delete newState[action.productId]; // Remove the deleted product from the state
+            return newState;
         }
         default:
             return state;
     }
 }
-
 export default productsReducer;

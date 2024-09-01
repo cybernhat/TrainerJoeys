@@ -22,3 +22,10 @@ class WatchlistItem(db.Model):
 
     watchlist = db.relationship("Watchlist", back_populates="watchlist_items")
     product = db.relationship("Product", back_populates="watchlist_items")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'watchlist_id': self.watchlist_id,
+            'product_id': self.product_id,
+        }

@@ -8,7 +8,9 @@
   padding-right: 100px;
   border-bottom: 1px solid black;
   list-style-type: none;
-  align-items: center
+  align-items: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #home-icon {
@@ -30,4 +32,8 @@
 .logout-button {
   text-decoration: none;
   font-weight: bold
+}
+
+.navigation-bar {
+  background-color:  #c3b091
 }

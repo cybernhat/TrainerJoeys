@@ -72,6 +72,12 @@
     justify-content: space-around;
 }
 
+#product-page-container {
+    padding: 20px;
+    background-color: rgba(245, 245, 245, 0.5); /* Light grey with 80% opacity */
+    font-family: Arial, sans-serif;
+    color: #333;
+}
 
 
 

@@ -34,6 +34,7 @@ def seed_products():
     Product(
         user_id=user1.id,
         pokemon_id=6,
+        level=100,
         # img_url="https://images.gamebanana.com/img/ss/mods/634dc41b545d9.jpg",
         ability="Blaze",
         item="Charcoal",
@@ -52,6 +53,7 @@ def seed_products():
     Product(
         user_id=user1.id,
         pokemon_id=25,
+        level=100,
         # img_url="https://i.ytimg.com/vi/edyp5e03mQs/sddefault.jpg",
         ability="Static",
         item="Light Ball",
@@ -70,6 +72,7 @@ def seed_products():
     Product(
         user_id=user1.id,
         pokemon_id=143,
+        level=100,
         # img_url="https://pokefella.com/cdn/shop/products/PokefellaSet-Snorlaxgmaxultrashiny_1024x1024.png?v=1584801109",
         ability="Immunity",
         item="Leftovers",
@@ -88,6 +91,7 @@ def seed_products():
     Product(
         user_id=user1.id,
         pokemon_id=149,
+        level=100,
         ability="Inner Focus",
         # img_url="https://i.ytimg.com/vi/obZB7fErjYU/hqdefault.jpg",
         item="Dragon Fang",
@@ -106,6 +110,7 @@ def seed_products():
     Product(
         user_id=user1.id,
         pokemon_id=150,
+        level=100,
         # img_url="https://pm1.aminoapps.com/7242/8796a70a723e33d89c8ebca0b41f11bcd3cd9ea1r1-2048-1536v2_uhq.jpg",
         ability="Pressure",
         item="None",
@@ -124,6 +129,7 @@ def seed_products():
     Product(
         user_id=user2.id,
         pokemon_id=94,  # Gengar
+        level=100,
         ability="Levitate",
         item="Focus Sash",
         nature="Timid",
@@ -141,6 +147,7 @@ def seed_products():
     Product(
         user_id=user2.id,
         pokemon_id=65,  # Alakazam
+        level=100,
         ability="Synchronize",
         item="TwistedSpoon",
         nature="Modest",
@@ -158,6 +165,7 @@ def seed_products():
     Product(
         user_id=user2.id,
         pokemon_id=68,  # Machamp
+        level=100,
         ability="Guts",
         item="Leftovers",
         nature="Adamant",
@@ -175,6 +183,7 @@ def seed_products():
     Product(
         user_id=user2.id,
         pokemon_id=130,  # Gyarados
+        level=100,
         ability="Intimidate",
         item="Mystic Water",
         nature="Jolly",
@@ -192,6 +201,7 @@ def seed_products():
     Product(
         user_id=user2.id,
         pokemon_id=59,  # Arcanine
+        level=100,
         ability="Intimidate",
         item="Charcoal",
         nature="Adamant",
@@ -209,6 +219,7 @@ def seed_products():
     Product(
         user_id=user3.id,
         pokemon_id=26,  # Raichu
+        level=100,
         ability="Static",
         item="Light Ball",
         nature="Hasty",
@@ -226,6 +237,7 @@ def seed_products():
     Product(
         user_id=user3.id,
         pokemon_id=3,  # Venusaur
+        level=100,
         ability="Overgrow",
         item="Leftovers",
         nature="Calm",
@@ -242,6 +254,7 @@ def seed_products():
     ),
     Product(
         user_id=user3.id,
+        level=100,
         pokemon_id=9,  # Blastoise
         ability="Torrent",
         item="Mystic Water",
@@ -259,6 +272,7 @@ def seed_products():
     Product(
         user_id=user3.id,
         pokemon_id=34,  # Nidoking
+        level=100,
         ability="Sheer Force",
         item="Life Orb",
         nature="Modest",
@@ -274,6 +288,7 @@ def seed_products():
     Product(
         user_id=user3.id,
         pokemon_id=122,  # Mr-Mime
+        level=100,
         ability="Sheer Force",
         item="Life Orb",
         nature="Modest",

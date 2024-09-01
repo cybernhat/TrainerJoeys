@@ -1,0 +1,83 @@
+/* General Styles */
+#profile-page-container {
+    padding: 20px;
+    background-color: rgba(245, 245, 245, 0.5); /* Light grey with 80% opacity */
+    color: #333;
+}
+
+
+
+#profile-top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#profile-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.profile-greeting {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.profile-links {
+    display: flex;
+    gap: 20px;
+}
+
+.profile-link {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #eee;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-link:hover {
+    background-color: #ddd;
+}
+
+.profile-link.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#profile-listings-container {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.profile-content {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-content h2 {
+    font-size: 22px;
+    margin-top: 0;
+}
+
+.profile-avatar {
+    border-radius: 50%;
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure image covers the circle */
+    margin-bottom: 10px;
+}

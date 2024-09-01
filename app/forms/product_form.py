@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired, URL, Optional, NumberRange
 
 
 class ProductForm(FlaskForm):
+    level = IntegerField("Level", validators=[DataRequired(), NumberRange(min=1, max=100)])
     ability = StringField("Ability", validators=[DataRequired()])
     item = StringField("Item", validators=[Optional()])
     nature = StringField("Nature", validators=[DataRequired()])

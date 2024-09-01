@@ -6,6 +6,8 @@ import HomePage from '../components/HomePage/HomePage';
 import UploadPicture from '../components/Product/CreateProduct';
 import OneProduct from '../components/Product/OneProduct';
 import EditProduct from '../components/Product/EditProduct';
+import UserPage from '../components/UserPage/UserPage';
+
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +36,12 @@ export const router = createBrowserRouter([
       {
         path: '/products/:productId/edit',
         element: <EditProduct/>
+      },
+      {
+        path:'/user',
+        element: <UserPage/>
       }
+
     ],
   },
 ]);

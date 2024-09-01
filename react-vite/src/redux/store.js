@@ -8,11 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import productsReducer from "./product";
 import pokemonReducer from "./pokemon";
+import watchlistReducer from "./watchlist";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   product: productsReducer,
-  pokemon: pokemonReducer
+  pokemon: pokemonReducer,
+  watchlist: watchlistReducer
 });
 
 let enhancer;

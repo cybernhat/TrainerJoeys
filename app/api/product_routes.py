@@ -42,6 +42,7 @@ def post_product():
     new_product = Product(
         user_id=current_user.id,
         pokemon_id=data.get("pokemon_id"),
+        level=data.get("level"),
         ability=data.get("ability"),
         item=data.get("item"),
         nature=data.get("nature"),
@@ -83,6 +84,7 @@ def update_product(product_id):
     data = request.get_json()
 
     # Update product fields with the data from the request
+    product.level = data.get("level", product_level)
     product.item = data.get("item", product.item)
     product.game = data.get("game", product.game)
     product.generation = data.get("generation", product.generation)
@@ -101,13 +103,14 @@ def update_product(product_id):
     return jsonify(product.to_dict()), 200
 
 
-@product_routes.route("/<int:product_id>", methods=["DELETE"])
+@product_routes.route("/<int:product_id>/delete", methods=["DELETE"])
 def delete_product_by_id(product_id):
     product = Product.query.get(product_id)
 
     if product:
-        db.session.delete(product_id)
+        db.session.delete(product) 
         db.session.commit()
+        return jsonify({"message": "Product deleted"}), 200  # return a JSON response
     else:
         return jsonify({"message": "Product not found"}), 404
 

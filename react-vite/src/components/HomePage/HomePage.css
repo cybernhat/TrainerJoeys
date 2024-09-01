@@ -1,0 +1,103 @@
+#homepage-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 36px;
+}
+
+.product-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    overflow: hidden;
+    width: 280px;
+    margin-bottom: 20px;
+}
+
+.product-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.game-gen-container, .name-level, .ability-nature-item, .move-container, .shiny-container, .price-container {
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.game-gen-container h3, .game-gen-container h4, .name-level h3, .name-level h4 {
+    margin: 5px 0;
+}
+
+.pokemon-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.ability-nature-item h4, .move-container h5 {
+    margin: 8px 0;
+    font-weight: 400;
+}
+
+.move-container {
+    min-height: 100px; /* Adjust this height as necessary */
+}
+
+.shiny-container h2 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.shiny {
+    color: #ffcc00; /* Gold color for Shiny */
+}
+
+.not-shiny {
+    color: #d9534f; /* Red color for Not Shiny */
+    visibility: hidden;
+}
+
+.price-container h3 {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+NavLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.product-container a {
+    text-decoration: none;
+    display: block;
+}
+
+.product-container a:hover {
+    text-decoration: none;
+}
+
+.user-product {
+    padding-left: 50px;
+}
+
+#homepage-container {
+    padding: 20px;
+    background-color: rgba(245, 245, 245, 0.5); /* Light grey with 80% opacity */
+    font-family: Arial, sans-serif;
+    color: #333;
+}

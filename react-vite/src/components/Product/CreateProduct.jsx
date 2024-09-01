@@ -13,6 +13,7 @@ const UploadPicture = () => {
     const allPokemon = useSelector((state) => state.pokemon);
 
     const [pokemonId, setPokemonId] = useState("");
+    const [level, setLevel] = useState("");
     const [ability, setAbility] = useState("");
     const [item, setItem] = useState("");
     const [nature, setNature] = useState("");
@@ -66,7 +67,7 @@ const UploadPicture = () => {
         setProductImageError("");
     };
 
-    console.log('AAAAAAAAAAAAAAA', pokemonId)
+    console.log("AAAAAAAAAAAAAAA", pokemonId);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -74,6 +75,7 @@ const UploadPicture = () => {
         const productData = {
             pokemon_id: parseInt(pokemonId),
             user_id: currUser.id,
+            level,
             ability,
             item,
             nature,
@@ -103,6 +105,8 @@ const UploadPicture = () => {
         setProductImageLoading(true);
         await dispatch(productImageActions.postProductImage(productImageData));
         setProductImageLoading(false);
+
+        navigate(`/products/${newProduct.id}`)
     };
 
     return (
@@ -167,6 +171,19 @@ const UploadPicture = () => {
 
             {/* Form Fields for Product Details */}
             <div>
+                <label>Level:</label>
+                <input
+                    type="number"
+                    value={level}
+                    onChange={(e) =>
+                        setLevel(
+                            e.target.value === ""
+                                ? ""
+                                : parseInt(e.target.value, 10)
+                        )
+                    }
+                    placeholder=""
+                />
                 <label>Ability:</label>
                 <input
                     type="text"
