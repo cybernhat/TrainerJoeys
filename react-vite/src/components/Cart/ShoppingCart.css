@@ -1,0 +1,10 @@
+#shopping-cart-container {
+    padding: 20px;
+    background-color: rgba(
+        245,
+        245,
+        245,
+        0.5
+    ); /* Light grey with 80% opacity */
+    color: #333;
+}

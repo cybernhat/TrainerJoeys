@@ -26,6 +26,7 @@ class Cart(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "cart_items": [
-                item.to_dict() for item in self.cart_items
-            ],  # Assuming CartItem has a to_dict method
+                item.product.to_dict() if item.product else None
+                for item in self.cart_items
+            ],  
         }

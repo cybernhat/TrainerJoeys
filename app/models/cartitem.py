@@ -7,7 +7,7 @@ class CartItem(db.Model):
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-        
+
     id = db.Column(db.Integer, primary_key=True)
     cart_id = db.Column(
         db.Integer,
@@ -22,3 +22,11 @@ class CartItem(db.Model):
 
     cart = db.relationship("Cart", back_populates="cart_items")
     product = db.relationship("Product", back_populates="cart_items")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'cart_id': self.cart_id,
+            'product_id': self.product_id,
+            'product': self.product.to_dict() if self.product else None
+        }

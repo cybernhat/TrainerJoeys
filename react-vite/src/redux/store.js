@@ -9,12 +9,14 @@ import sessionReducer from "./session";
 import productsReducer from "./product";
 import pokemonReducer from "./pokemon";
 import watchlistReducer from "./watchlist";
+import cartReducer from "./cart";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   product: productsReducer,
   pokemon: pokemonReducer,
-  watchlist: watchlistReducer
+  watchlist: watchlistReducer,
+  cart: cartReducer
 });
 
 let enhancer;

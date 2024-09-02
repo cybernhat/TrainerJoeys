@@ -7,6 +7,7 @@ import UploadPicture from '../components/Product/CreateProduct';
 import OneProduct from '../components/Product/OneProduct';
 import EditProduct from '../components/Product/EditProduct';
 import UserPage from '../components/UserPage/UserPage';
+import ShoppingCart from '../components/Cart/ShoppingCart';
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path:'/user',
         element: <UserPage/>
+      },
+      {
+        path:'/user/cart',
+        element: <ShoppingCart/>
       }
 
     ],

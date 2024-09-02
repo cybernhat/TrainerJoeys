@@ -28,4 +28,5 @@ class WatchlistItem(db.Model):
             'id': self.id,
             'watchlist_id': self.watchlist_id,
             'product_id': self.product_id,
+            'product': self.product.to_dict() if self.product else None
         }

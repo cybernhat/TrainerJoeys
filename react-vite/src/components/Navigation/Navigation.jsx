@@ -1,15 +1,19 @@
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
-import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect, useRef } from "react";
 import OpenModalMenuItem from "./OpenModalMenuItem";
+import { FaCartShopping } from "react-icons/fa6";
+import CartModal from "../Cart/ShoppingCart";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 function Navigation() {
-  const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false)
+    const dispatch = useDispatch();
+    const [showCartModal, setShowCartModal] = useState(false);
 
-  const user = useSelector(state => state.session.user)
+    const user = useSelector((state) => state.session.user);
+
     return (
         <ul className="navigation-bar">
             <li className="button">
@@ -23,7 +27,13 @@ function Navigation() {
             </li>
             <li className="login-logout-container">
                 {user ? (
-                    <ProfileButton />
+                    <div id="profile-container">
+                        <OpenModalButton
+                            buttonText={<FaCartShopping />}
+                            modalComponent={CartModal}
+                        />
+                        <ProfileButton />
+                    </div>
                 ) : (
                     <>
                         <NavLink to="/login" className="login-button">
@@ -38,4 +48,5 @@ function Navigation() {
         </ul>
     );
 }
+
 export default Navigation;
