@@ -42,6 +42,9 @@ const EditProduct = ({ productId }) => {
         const formErrors = {};
 
         if (!level) formErrors.level = "Level is required";
+        if (level <= 0 || level > 100)
+            formErrors.level = "Levels are between 1-100";
+
         if (!item) formErrors.item = "Item is required";
 
         if (!game) formErrors.game = "Game is required";
@@ -233,7 +236,9 @@ const EditProduct = ({ productId }) => {
                         {hasSubmitted && errors.level && (
                             <span>{errors.level}</span>
                         )}
-                        {hasSubmitted && productImageError && <span>{productImageError}</span>}
+                        {hasSubmitted && productImageError && (
+                            <span>{productImageError}</span>
+                        )}
                     </div>
                     <div className="edit-item-container">
                         <label>Item:</label>

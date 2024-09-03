@@ -40,7 +40,10 @@ const UploadPicture = () => {
     useEffect(() => {
         const formErrors = {};
         if (!pokemonId) formErrors.pokemon = "Please select a Pokemon";
+
         if (!level) formErrors.level = "Level is required";
+        if (level <= 0 || level > 100) formErrors.level = "Levels are between 1-100"
+
         if (!ability) formErrors.ability = "Ability is required";
         if (!item) formErrors.item = "Item is required";
         if (!nature) formErrors.nature = "Nature is required";
