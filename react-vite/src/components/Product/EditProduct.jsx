@@ -96,7 +96,7 @@ const EditProduct = ({ productId }) => {
             setProductImageFilename(productImage.filename);
             setProductImagePreview(productImage.img_url);
         }
-    }, [product, productImage,]);
+    }, [product, productImage]);
     const fileWrap = (e) => {
         e.stopPropagation();
         const tempFile = e.target.files[0];
@@ -124,6 +124,11 @@ const EditProduct = ({ productId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setHasSubmitted(true);
+
+        if (Object.keys(errors).length > 0) {
+            return;
+        }
 
         const productData = {
             level,
@@ -166,7 +171,11 @@ const EditProduct = ({ productId }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} encType="multipart/form-data" id='edit-form-container'>
+        <form
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+            id="edit-form-container"
+        >
             <div
                 style={{
                     position: "relative",
@@ -189,13 +198,14 @@ const EditProduct = ({ productId }) => {
                     >
                         Upload Product Image
                     </label>
+                    {hasSubmitted && errors.productImageUrl}
                 </div>
                 {productImagePreview && (
                     <img
                         src={productImagePreview}
                         alt="product image preview"
                         style={{ width: "300px", maxHeight: "200px" }}
-                        className='product-image'
+                        className="product-image"
                     />
                 )}
                 {productImageLoading && (
@@ -220,6 +230,10 @@ const EditProduct = ({ productId }) => {
                             }
                             placeholder=""
                         />
+                        {hasSubmitted && errors.level && (
+                            <span>{errors.level}</span>
+                        )}
+                        {hasSubmitted && productImageError && <span>{productImageError}</span>}
                     </div>
                     <div className="edit-item-container">
                         <label>Item:</label>
@@ -229,6 +243,9 @@ const EditProduct = ({ productId }) => {
                             onChange={(e) => setItem(e.target.value)}
                             placeholder="Enter held item"
                         />
+                        {hasSubmitted && errors.item && (
+                            <span>{errors.item}</span>
+                        )}
                     </div>
                 </div>
                 <div className="game-generation-container">
@@ -240,6 +257,9 @@ const EditProduct = ({ productId }) => {
                             onChange={(e) => setGame(e.target.value)}
                             placeholder="Enter product's current game"
                         />
+                        {hasSubmitted && errors.game && (
+                            <span>{errors.game}</span>
+                        )}
                     </div>
                     <div className="generation-container">
                         <label>Generation:</label>
@@ -255,6 +275,9 @@ const EditProduct = ({ productId }) => {
                             }
                             placeholder="Enter game's generation"
                         />
+                        {hasSubmitted && errors.generation && (
+                            <span>{errors.generation}</span>
+                        )}
                     </div>
                 </div>
                 <div className="quantity-price-container">
@@ -272,6 +295,9 @@ const EditProduct = ({ productId }) => {
                             }
                             placeholder=""
                         />
+                        {hasSubmitted && errors.quantity && (
+                            <span>{errors.quantity}</span>
+                        )}
                     </div>
                     <div className="value-container">
                         <label>Price:</label>
@@ -281,6 +307,9 @@ const EditProduct = ({ productId }) => {
                             onChange={(e) => setPrice(e.target.value)}
                             placeholder=""
                         />
+                        {hasSubmitted && errors.price && (
+                            <span>{errors.price}</span>
+                        )}
                     </div>
                 </div>
                 <div className="description-container">
@@ -290,6 +319,9 @@ const EditProduct = ({ productId }) => {
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Enter description (IV and EV for example)"
                     />
+                    {hasSubmitted && errors.description && (
+                        <span>{errors.description}</span>
+                    )}
                 </div>
                 <div className="moves-container">
                     <div className="move-1-container">
@@ -300,6 +332,9 @@ const EditProduct = ({ productId }) => {
                             onChange={(e) => setMove1(e.target.value)}
                             placeholder="Mandatory"
                         />
+                        {hasSubmitted && errors.move_1 && (
+                            <span>{errors.move_1}</span>
+                        )}
                     </div>
                     <div className="move-2-container">
                         <label>Move 2:</label>

@@ -145,3 +145,7 @@ body {
     width: 50px;
     margin-left: 95px;
 }
+
+.product-component-h3:hover {
+    cursor:pointer
+}

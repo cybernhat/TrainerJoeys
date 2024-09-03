@@ -122,7 +122,7 @@ const OneProduct = () => {
                             </div>
                             <div className="game-data-container">
                                 <div className="name-container">
-                                    <h2>Current Game</h2>
+                                    <h2>Current Game:</h2>
                                     <h3>
                                         {product.game} (gen {product.generation}
                                         )

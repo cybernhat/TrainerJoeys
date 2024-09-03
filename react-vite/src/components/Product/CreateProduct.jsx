@@ -203,6 +203,9 @@ const UploadPicture = () => {
                         Upload Product Image
                     </label>
                     {hasSubmitted && errors.productImageUrl}
+                    {hasSubmitted && productImageError && (
+                        <span>{productImageError}</span>
+                    )}
                 </div>
                 {productImagePreview && (
                     <img

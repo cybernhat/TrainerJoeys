@@ -60,13 +60,13 @@ const UserPage = () => {
                         className={activeTab === "products" ? "active" : ""}
                         onClick={() => handleTabChange("products")}
                     >
-                        Products
+                        <h3 className="product-component-h3">Products</h3>
                     </div>
                     <div
                         className={activeTab === "watchlist" ? "watchlist" : ""}
                         onClick={() => handleTabChange("watchlist")}
                     >
-                        Watchlist
+                        <h3 className="product-component-h3">Watchlist</h3>
                     </div>
                 </div>
             </div>
