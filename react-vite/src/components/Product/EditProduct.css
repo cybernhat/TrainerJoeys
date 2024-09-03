@@ -1,0 +1,28 @@
+#edit-form-container {
+    margin-left: 29px;
+    margin-right: 20px;
+}
+
+.level-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.edit-level-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.edit-item-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: -15px;
+}
+
+.product-image {
+    padding-left: 50px;
+
+}

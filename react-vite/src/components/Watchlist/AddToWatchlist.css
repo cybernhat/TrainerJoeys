@@ -1,0 +1,22 @@
+#modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.modal-button {
+    background-color: #c3b091; /* Red background */
+    color: white; /* White text color for contrast */
+    border: none; /* Remove default button border */
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+    cursor: pointer; /* Change cursor to pointer */
+    border-radius: 5px; /* Optional: rounded corners */
+    margin: 5px; /* Optional: space between buttons */
+}
+
+.modal-button:hover {
+    background-color: #c3b151; /* Darker red on hover */
+}

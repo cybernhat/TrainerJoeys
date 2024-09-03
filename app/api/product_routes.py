@@ -90,6 +90,7 @@ def update_product(product_id):
     product.generation = data.get("generation", product.generation)
     product.price = data.get("price", product.price)
     product.description = data.get("description", product.description)
+    product.quantity = data.get("quantity", product.quantity)
 
     # Update new move fields
     product.move_1 = data.get("move_1", product.move_1)

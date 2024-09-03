@@ -1,0 +1,53 @@
+#login-form-page-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the container takes at least the full height of the viewport */
+    padding: 20px;
+    background-color: rgba(
+        245,
+        245,
+        245,
+        0.5
+    ); /* Light grey with 80% opacity */
+    color: #333;
+}
+
+.login-email-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-password-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#image-decoration-for-login {
+    width: 2000px
+}
+
+.signup-first-name-container {
+    display: flex;
+    flex-direction: column;
+}
+.signup-last-name-container {
+    display: flex;
+    flex-direction: column;
+}
+.signup-email-container {
+    display: flex;
+    flex-direction: column;
+}
+.signup-username-container {
+    display: flex;
+    flex-direction: column;
+}
+.signup-password-container {
+    display: flex;
+    flex-direction: column;
+}
+.signup-confirm-password-container {
+    display: flex;
+    flex-direction: column;
+}

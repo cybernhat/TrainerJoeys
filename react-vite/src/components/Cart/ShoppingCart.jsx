@@ -58,7 +58,7 @@ const ShoppingCart = () => {
                                     />
                                     <h2>Level {product.level}</h2>
                                     <h2>Item: {product.item}</h2>
-                                    <h3>${product.price}</h3>
+                                    <h2>${product.price}</h2>
                                 </NavLink>
                                 <button
                                     id="remove-button"

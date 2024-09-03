@@ -26,19 +26,17 @@ const RemoveFromWatchlist = ({ productId }) => {
         }
     };
     return (
-        <div className="remove-product-modal-container">
-            <h1 className="remove-product-modal-title">
-                Remove this product from your watchlist?
-            </h1>
-            <div className="remove-product-modal-buttons">
+        <div id="modal-container">
+            <h1>Remove this product from your watchlist?</h1>
+            <div className="button-container">
                 <button
-                    className="remove-product-modal-confirm"
+                    className="modal-button"
                     onClick={handleDelete}
                 >
                     Remove
                 </button>
                 <button
-                    className="remove-product-modal-cancel"
+                    className="modal-button"
                     onClick={closeModal}
                 >
                     Cancel

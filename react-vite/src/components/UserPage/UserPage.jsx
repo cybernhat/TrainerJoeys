@@ -7,6 +7,7 @@ import * as watchlistActions from "../../redux/watchlist";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import DeleteProduct from "../../components/Product/DeleteProduct";
 import RemoveFromWatchlist from "../Watchlist/RemoveFromWatchlist";
+import EditProduct from "../../components/Product/EditProduct";
 
 const UserPage = () => {
     const dispatch = useDispatch();
@@ -133,15 +134,28 @@ const UserPage = () => {
                                         </div>
                                     </NavLink>
                                     <div id="user-product-edit-delete-container">
-                                        <OpenModalButton
-                                            buttonText="Delete"
-                                            modalComponent={
-                                                <DeleteProduct
-                                                    productId={product.id}
-                                                />
-                                            }
-                                            className="delete-product-button"
-                                        />
+                                        <div className="edit-button-container">
+                                            <OpenModalButton
+                                                buttonText="Edit"
+                                                modalComponent={
+                                                    <EditProduct
+                                                        productId={product.id}
+                                                    />
+                                                }
+                                                className="edit-product-button"
+                                            />
+                                        </div>
+                                        <div className="delete-button-container">
+                                            <OpenModalButton
+                                                buttonText="Delete"
+                                                modalComponent={
+                                                    <DeleteProduct
+                                                        productId={product.id}
+                                                    />
+                                                }
+                                                className="delete-product-button"
+                                            />
+                                        </div>
                                     </div>
                                     {/* <div className="cart-watchlist">
                                     <button className="cart-button">
@@ -215,7 +229,7 @@ const UserPage = () => {
                                             <h3>${product.price}</h3>
                                         </div>
                                     </NavLink>
-                                    <div id="user-product-edit-delete-container">
+                                    <div className="watchlist-button-container">
                                         <OpenModalButton
                                             buttonText="Remove"
                                             modalComponent={
@@ -223,17 +237,9 @@ const UserPage = () => {
                                                     productId={product.id}
                                                 />
                                             }
-                                            className="delete-product-button"
+                                            className="watchlist-product-button"
                                         />
                                     </div>
-                                    {/* <div className="cart-watchlist">
-                               <button className="cart-button">
-                                   Add to Cart
-                               </button>
-                               <button className='watchlist-button'>
-                                   Add to Watchlist
-                               </button>
-                           </div> */}
                                 </div>
                             );
                         })}

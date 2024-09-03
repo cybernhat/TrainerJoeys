@@ -33,12 +33,20 @@ h1 {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.game-gen-container, .name-level, .ability-nature-item, .move-container, .shiny-container, .price-container {
+.game-gen-container,
+.name-level,
+.ability-nature-item,
+.move-container,
+.shiny-container,
+.price-container {
     padding: 10px 20px;
     text-align: center;
 }
 
-.game-gen-container h3, .game-gen-container h4, .name-level h3, .name-level h4 {
+.game-gen-container h3,
+.game-gen-container h4,
+.name-level h3,
+.name-level h4 {
     margin: 5px 0;
 }
 
@@ -48,7 +56,8 @@ h1 {
     display: block;
 }
 
-.ability-nature-item h4, .move-container h5 {
+.ability-nature-item h4,
+.move-container h5 {
     margin: 8px 0;
     font-weight: 400;
 }
@@ -71,7 +80,11 @@ h1 {
     visibility: hidden;
 }
 
-.price-container h3 {
+.homepage-price-container {
+    display: flex;
+    justify-content: space-around;
+}
+.homepage-price-container h3 {
     margin: 10px 0;
     font-size: 22px;
 }
@@ -97,7 +110,61 @@ NavLink {
 
 #homepage-container {
     padding: 20px;
-    background-color: rgba(245, 245, 245, 0.5); /* Light grey with 80% opacity */
+    background-color: rgba(
+        245,
+        245,
+        245,
+        0.5
+    ); /* Light grey with 80% opacity */
     font-family: Arial, sans-serif;
     color: #333;
+}
+
+.cart-watchlist {
+    display: flex;
+    justify-content: space-around;
+}
+
+.add-to-watchlist-button {
+    background-color: #c3b091; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border if any */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Optional: rounded corners */
+    cursor: pointer; /* Show a pointer cursor on hover */
+    font-size: 13px; /* Adjust font size */
+    font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-bottom: 10px;
+}
+
+.add-to-watchlist-button:hover {
+    background-color: #c3b151; /* Change background color on hover */
+}
+
+.cart-button {
+    background-color: #c3b091; /* Red background */
+    color: white; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Optional: rounded corners */
+    cursor: pointer; /* Show a pointer cursor on hover */
+    font-size: 13px; /* Adjust font size */
+    font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove text underline if any */
+    display: inline-block; /* Make sure it respects padding */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-bottom: 10px;
+}
+
+.cart-button:hover {
+    background-color: #c3b151; /* Change background color on hover */
+}
+
+.cart-text {
+    margin-top: 7px;
+}
+
+.watchlisted-text {
+    margin-top: 7px;
 }

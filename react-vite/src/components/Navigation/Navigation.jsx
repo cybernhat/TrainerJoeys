@@ -40,26 +40,34 @@ function Navigation() {
             <li className="login-logout-container">
                 {user ? (
                     <div id="profile-container">
-                        <NavLink to="/user/cart">
-                            <FaCartShopping />
+                        <NavLink
+                            className="create-product-button-container"
+                            to="/products/upload"
+                        >
+                            Create Product
+                        </NavLink>
+                        <NavLink
+                            className="shopping-cart-container"
+                            to="/user/cart"
+                        >
+                            <FaCartShopping className="cart-icon" />
                             {cartItemCount > 0 && (
                                 <span className="cart-item-count">
                                     {cartItemCount}
                                 </span>
-                            )}
+                            )}{" "}
                         </NavLink>
-
                         <ProfileButton />
                     </div>
                 ) : (
-                    <>
+                    <div className='login-logout-container'>
                         <NavLink to="/login" className="login-button">
                             Log In
                         </NavLink>
                         <NavLink to="/signup" className="logout-button">
                             Sign Up
                         </NavLink>
-                    </>
+                    </div>
                 )}
             </li>
         </ul>

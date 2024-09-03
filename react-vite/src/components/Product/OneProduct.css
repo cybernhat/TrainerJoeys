@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: rgba(245, 245, 245, 0.5);
     min-height: 100vh;
     font-family: Arial, sans-serif; /* Ensure consistent font across the container */
 }
@@ -18,7 +18,47 @@
     min-height: 80vh;
     padding: 40px;
     box-sizing: border-box;
+    background-color: rgba(245, 245, 245);
     overflow: hidden;
+}
+
+.modal-button-container {
+    background: #c3b091; /* Bright blue background color */
+    border: 1px solid #c3b091; /* Matching border color */
+    color: white; /* White text color for contrast */
+    padding: 10px 20px; /* Comfortable padding */
+    font-size: 16px; /* Adjust font size */
+    font-weight: bold; /* Make text bold */
+    border-radius: 5px;
+    width: 100px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition effects */
+    margin-left: 960px;
+}
+
+.posted-user-container {
+    margin-top: -50px;
+    text-decoration: none;
+    width: 300px;
+}
+
+.posted-user-container:hover {
+    text-decoration: underline;
+}
+.posted-user-container h4 {
+    font-size: 25px;
+    color: black; /* Adjust to your desired size */
+}
+
+.modal-button-container:hover {
+    background: #c3b151; /* Darker blue background on hover */
+    border-color: #c3b151; /* Match border color with background on hover */
+}
+
+.modal-button-container:active {
+    background: #c3b151; /* Even darker blue when button is clicked */
+    border-color: #c3b151; /* Match border color with background on click */
 }
 
 /* Product Card Styling */
@@ -36,6 +76,19 @@
     gap: 25px;
 }
 
+.ability-item-nature-container {
+    display: flex;
+}
+
+.ability-container {
+    margin-right: -75px;
+    margin-top: 20px;
+}
+.item-container,
+.nature-container {
+    margin-top: 20px;
+    margin-right: -50px;
+}
 .name-container {
     font-size: 36px;
     font-weight: bold;
@@ -43,12 +96,9 @@
 }
 
 .img_container {
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
     object-fit: contain;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    background-color: #fafafa;
 }
 
 .type-container {
@@ -68,6 +118,18 @@
     text-align: center;
 }
 
+#moves-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.moves-container {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 20px;
+}
 /* Info Container Styling */
 .info-container {
     display: flex;
@@ -83,25 +145,33 @@
 
 /* Game Data and Description Styling */
 .game-data-container {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .description-image-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 15px;
 }
 
+.description-image {
+    width: 500px;
+    height: 250px;
+}
 .description {
     font-size: 18px;
     color: #666;
     text-align: center;
     margin: 10px;
+    margin-top: -210px;
+    overflow: hidden;
+    text-overflow: elipses;
 }
 
 .description-image {
-    max-width: 100%;
+    max-width: 35%;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -116,7 +186,6 @@
 .price-container {
     font-size: 28px;
     font-weight: bold;
-    color: #e60023;
 }
 
 /* Reviews Section Styling */
@@ -174,6 +243,13 @@
     background-color: #0056b3;
 }
 
+.add-review-button {
+    margin-right: 1100px;
+    width: 100px;
+    background-color: #c3b091;
+    border-radius: 10px;
+    padding: 5px;
+}
 /* General Styling */
 p {
     font-size: 16px;
@@ -194,58 +270,55 @@ h3 {
 
 .description-box {
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: elipses;
 }
 
-
-
-
 .pokemon-type.fire {
-    background-color: #F08030;
+    background-color: #f08030;
 }
 
 .pokemon-type.water {
-    background-color: #6890F0;
+    background-color: #6890f0;
 }
 
 .pokemon-type.grass {
-    background-color: #78C850;
+    background-color: #78c850;
 }
 
 .pokemon-type.electric {
-    background-color: #F8D030;
+    background-color: #f8d030;
 }
 
 .pokemon-type.ice {
-    background-color: #98D8D8;
+    background-color: #98d8d8;
 }
 
 .pokemon-type.fighting {
-    background-color: #C03028;
+    background-color: #c03028;
 }
 
 .pokemon-type.poison {
-    background-color: #A040A0;
+    background-color: #a040a0;
 }
 
 .pokemon-type.ground {
-    background-color: #E0C068;
+    background-color: #e0c068;
 }
 
 .pokemon-type.flying {
-    background-color: #A890F0;
+    background-color: #a890f0;
 }
 
 .pokemon-type.psychic {
-    background-color: #F85888;
+    background-color: #f85888;
 }
 
 .pokemon-type.bug {
-    background-color: #A8B820;
+    background-color: #a8b820;
 }
 
 .pokemon-type.rock {
-    background-color: #B8A038;
+    background-color: #b8a038;
 }
 
 .pokemon-type.ghost {
@@ -253,7 +326,7 @@ h3 {
 }
 
 .pokemon-type.dragon {
-    background-color: #7038F8;
+    background-color: #7038f8;
 }
 
 .pokemon-type.dark {
@@ -261,13 +334,13 @@ h3 {
 }
 
 .pokemon-type.steel {
-    background-color: #B8B8D0;
+    background-color: #b8b8d0;
 }
 
 .pokemon-type.fairy {
-    background-color: #EE99AC;
+    background-color: #ee99ac;
 }
 
 .pokemon-type.normal {
-    background-color: #A8A878;
+    background-color: #a8a878;
 }

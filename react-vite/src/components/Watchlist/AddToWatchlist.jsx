@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as watchlistActions from "../../redux/watchlist";
 import { useModal } from "../../context/Modal";
+import './AddToWatchlist.css'
 
 const AddToWatchlist = ({ productId }) => {
     const { closeModal } = useModal();
@@ -36,13 +37,13 @@ const AddToWatchlist = ({ productId }) => {
     };
 
     return (
-        <div id="watchlist-modal-container">
+        <div id="modal-container">
             <h1>Add to Watchlist?</h1>
-            <div className="modal-button">
-                <button onClick={handleSubmit} className="confirm-button">
+            <div className="button-container">
+                <button onClick={handleSubmit} className="modal-button">
                     Yes
                 </button>
-                <button onClick={closeModal} className="cancel-button">
+                <button onClick={closeModal} className="modal-button">
                     Cancel
                 </button>
             </div>
