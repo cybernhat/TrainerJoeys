@@ -126,49 +126,51 @@ const HomePage = () => {
                                     This is your product!
                                 </h3>
                             ) : (
-                                <div className="cart-watchlist">
-                                    {isInCart ? (
-                                        <span className="cart-text">
-                                            In Cart
-                                        </span>
-                                    ) : (
-                                        <button
-                                            className="cart-button"
-                                            onClick={() =>
-                                                handleAddToCart(product.id)
-                                            }
-                                        >
-                                            Add to Cart
-                                        </button>
-                                    )}
-                                    {
-                                        currUser && currUser.watchlist ? (
-                                            isWatchlisted ? (
-                                                <span className="watchlisted-text">
-                                                    Watchlisted
-                                                </span>
-                                            ) : (
-                                                <div className="add-to-watchlist-button">
-                                                    <OpenModalButton
-                                                        buttonText="Add to Watchlist"
-                                                        modalComponent={
-                                                            <AddToWatchlist
-                                                                productId={
-                                                                    product.id
-                                                                }
-                                                                watchlistId={
-                                                                    currUser
-                                                                        .watchlist
-                                                                        .id
-                                                                }
-                                                            />
-                                                        }
-                                                    />
-                                                </div>
-                                            )
-                                        ) : null // Handle case when currUser.watchlist is not available
-                                    }
-                                </div>
+                                currUser && (
+                                    <div className="cart-watchlist">
+                                        {isInCart ? (
+                                            <span className="cart-text">
+                                                In Cart
+                                            </span>
+                                        ) : (
+                                            <button
+                                                className="cart-button"
+                                                onClick={() =>
+                                                    handleAddToCart(product.id)
+                                                }
+                                            >
+                                                Add to Cart
+                                            </button>
+                                        )}
+                                        {
+                                            currUser.watchlist ? (
+                                                isWatchlisted ? (
+                                                    <span className="watchlisted-text">
+                                                        Watchlisted
+                                                    </span>
+                                                ) : (
+                                                    <div className="add-to-watchlist-button">
+                                                        <OpenModalButton
+                                                            buttonText="Add to Watchlist"
+                                                            modalComponent={
+                                                                <AddToWatchlist
+                                                                    productId={
+                                                                        product.id
+                                                                    }
+                                                                    watchlistId={
+                                                                        currUser
+                                                                            .watchlist
+                                                                            .id
+                                                                    }
+                                                                />
+                                                            }
+                                                        />
+                                                    </div>
+                                                )
+                                            ) : null // Handle case when currUser.watchlist is not available
+                                        }
+                                    </div>
+                                )
                             )}
                         </div>
                     );

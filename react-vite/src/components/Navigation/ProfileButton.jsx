@@ -60,7 +60,7 @@ function ProfileButton() {
                                     My Profile
                                 </NavLink>
 
-                                <div className="logout-button">
+                                <div className="nav-logout-button">
                                     <button
                                         className="logout-button"
                                         onClick={logout}

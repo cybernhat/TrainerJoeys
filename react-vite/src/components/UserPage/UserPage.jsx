@@ -70,179 +70,196 @@ const UserPage = () => {
                     </div>
                 </div>
             </div>
-            {/* {activeTab === "products" && (
-                <h1>Hello from User's Product</h1>
-            )} */}
             <div id="profile-listings-container">
                 {activeTab === "products" && (
                     <div className="product-list-container">
-                        {userProducts.map((product) => {
-                            const pokemonName =
-                                product.pokemon.name.charAt(0).toUpperCase() +
-                                product.pokemon.name.slice(1);
+                        {userProducts.length > 0 ? (
+                            userProducts.map((product) => {
+                                const pokemonName =
+                                    product.pokemon.name
+                                        .charAt(0)
+                                        .toUpperCase() +
+                                    product.pokemon.name.slice(1);
 
-                            return (
-                                <div
-                                    className="product-container"
-                                    key={product.id}
-                                >
-                                    <NavLink to={`/products/${product.id}`}>
-                                        <div className="game-gen-container">
-                                            <h3>Game: {product.game}</h3>
-                                            <h4>
-                                                Game Generation:{" "}
-                                                {product.generation}
-                                            </h4>
-                                        </div>
-                                        <div className="pokemon-image">
-                                            <img
-                                                src={
-                                                    product.pokemon.pokemon_img
-                                                }
-                                            />
-                                        </div>
-                                        <div className="name-level">
-                                            <h3>{pokemonName}</h3>
-                                            <h4>Level {product.level}</h4>
-                                        </div>
-                                        <div className="ability-nature-item">
-                                            <h4>Ability: {product.ability}</h4>
-                                            <h4>Nature: {product.nature}</h4>
-                                            <h4>Item: {product.item}</h4>
-                                        </div>
-                                        <div className="move-container">
-                                            <h5>{product.move_1}</h5>
-                                            <h5>{product.move_2}</h5>
-                                            <h5>{product.move_3}</h5>
-                                            <h5>{product.move_4}</h5>
-                                        </div>
-                                        <div className="shiny-container">
-                                            <h2
-                                                className={
-                                                    product.shiny
-                                                        ? "shiny"
-                                                        : "not-shiny"
-                                                }
-                                            >
-                                                {product.shiny
-                                                    ? "Shiny!"
-                                                    : "Not Shiny"}
-                                            </h2>
-                                        </div>
-                                        <div className="price-container">
-                                            <h3>${product.price}</h3>
-                                        </div>
-                                    </NavLink>
-                                    <div id="user-product-edit-delete-container">
-                                        <div className="edit-button-container">
-                                            <OpenModalButton
-                                                buttonText="Edit"
-                                                modalComponent={
-                                                    <EditProduct
-                                                        productId={product.id}
-                                                    />
-                                                }
-                                                className="edit-product-button"
-                                            />
-                                        </div>
-                                        <div className="delete-button-container">
-                                            <OpenModalButton
-                                                buttonText="Delete"
-                                                modalComponent={
-                                                    <DeleteProduct
-                                                        productId={product.id}
-                                                    />
-                                                }
-                                                className="delete-product-button"
-                                            />
+                                return (
+                                    <div
+                                        className="product-container"
+                                        key={product.id}
+                                    >
+                                        <NavLink to={`/products/${product.id}`}>
+                                            <div className="game-gen-container">
+                                                <h3>Game: {product.game}</h3>
+                                                <h4>
+                                                    Game Generation:{" "}
+                                                    {product.generation}
+                                                </h4>
+                                            </div>
+                                            <div className="pokemon-image">
+                                                <img
+                                                    src={
+                                                        product.pokemon
+                                                            .pokemon_img
+                                                    }
+                                                    alt={pokemonName}
+                                                />
+                                            </div>
+                                            <div className="name-level">
+                                                <h3>{pokemonName}</h3>
+                                                <h4>Level {product.level}</h4>
+                                            </div>
+                                            <div className="ability-nature-item">
+                                                <h4>
+                                                    Ability: {product.ability}
+                                                </h4>
+                                                <h4>
+                                                    Nature: {product.nature}
+                                                </h4>
+                                                <h4>Item: {product.item}</h4>
+                                            </div>
+                                            <div className="move-container">
+                                                <h5>{product.move_1}</h5>
+                                                <h5>{product.move_2}</h5>
+                                                <h5>{product.move_3}</h5>
+                                                <h5>{product.move_4}</h5>
+                                            </div>
+                                            <div className="shiny-container">
+                                                <h2
+                                                    className={
+                                                        product.shiny
+                                                            ? "shiny"
+                                                            : "not-shiny"
+                                                    }
+                                                >
+                                                    {product.shiny
+                                                        ? "Shiny!"
+                                                        : "Not Shiny"}
+                                                </h2>
+                                            </div>
+                                            <div className="price-container">
+                                                <h3>${product.price}</h3>
+                                            </div>
+                                        </NavLink>
+                                        <div id="user-product-edit-delete-container">
+                                            <div className="edit-button-container">
+                                                <OpenModalButton
+                                                    buttonText="Edit"
+                                                    modalComponent={
+                                                        <EditProduct
+                                                            productId={product.id}
+                                                        />
+                                                    }
+                                                    className="edit-product-button"
+                                                />
+                                            </div>
+                                            <div className="delete-button-container">
+                                                <OpenModalButton
+                                                    buttonText="Delete"
+                                                    modalComponent={
+                                                        <DeleteProduct
+                                                            productId={product.id}
+                                                        />
+                                                    }
+                                                    className="delete-product-button"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                    {/* <div className="cart-watchlist">
-                                    <button className="cart-button">
-                                        Add to Cart
-                                    </button>
-                                    <button className='watchlist-button'>
-                                        Add to Watchlist
-                                    </button>
-                                </div> */}
-                                </div>
-                            );
-                        })}
+                                );
+                            })
+                        ) : (
+                            <h3 className="empty-products-message">
+                                No products yet. Click on Create Product to make one!
+                            </h3>
+                        )}
                     </div>
                 )}
                 {activeTab === "watchlist" && (
                     <div className="product-list-container">
-                        {userWatchlist.map((product) => {
-                            const pokemonName =
-                                product.pokemon.name.charAt(0).toUpperCase() +
-                                product.pokemon.name.slice(1);
+                        {userWatchlist.length > 0 ? (
+                            userWatchlist.map((product) => {
+                                const pokemonName =
+                                    product.pokemon.name
+                                        .charAt(0)
+                                        .toUpperCase() +
+                                    product.pokemon.name.slice(1);
 
-                            return (
-                                <div
-                                    className="product-container"
-                                    key={product.id}
-                                >
-                                    <NavLink to={`/products/${product.id}`}>
-                                        <div className="game-gen-container">
-                                            <h3>Game: {product.game}</h3>
-                                            <h4>
-                                                Game Generation:{" "}
-                                                {product.generation}
-                                            </h4>
-                                        </div>
-                                        <div className="pokemon-image">
-                                            <img
-                                                src={
-                                                    product.pokemon.pokemon_img
+                                return (
+                                    <div
+                                        className="product-container"
+                                        key={product.id}
+                                    >
+                                        <NavLink to={`/products/${product.id}`}>
+                                            <div className="game-gen-container">
+                                                <h3>Game: {product.game}</h3>
+                                                <h4>
+                                                    Game Generation:{" "}
+                                                    {product.generation}
+                                                </h4>
+                                            </div>
+                                            <div className="pokemon-image">
+                                                <img
+                                                    src={
+                                                        product.pokemon
+                                                            .pokemon_img
+                                                    }
+                                                    alt={pokemonName}
+                                                />
+                                            </div>
+                                            <div className="name-level">
+                                                <h3>{pokemonName}</h3>
+                                                <h4>Level {product.level}</h4>
+                                            </div>
+                                            <div className="ability-nature-item">
+                                                <h4>
+                                                    Ability: {product.ability}
+                                                </h4>
+                                                <h4>
+                                                    Nature: {product.nature}
+                                                </h4>
+                                                <h4>Item: {product.item}</h4>
+                                            </div>
+                                            <div className="move-container">
+                                                <h5>{product.move_1}</h5>
+                                                <h5>{product.move_2}</h5>
+                                                <h5>{product.move_3}</h5>
+                                                <h5>{product.move_4}</h5>
+                                            </div>
+                                            <div className="shiny-container">
+                                                <h2
+                                                    className={
+                                                        product.shiny
+                                                            ? "shiny"
+                                                            : "not-shiny"
+                                                    }
+                                                >
+                                                    {product.shiny
+                                                        ? "Shiny!"
+                                                        : "Not Shiny"}
+                                                </h2>
+                                            </div>
+                                            <div className="price-container">
+                                                <h3>${product.price}</h3>
+                                            </div>
+                                        </NavLink>
+                                        <div className="watchlist-button-container">
+                                            <OpenModalButton
+                                                buttonText="Remove"
+                                                modalComponent={
+                                                    <RemoveFromWatchlist
+                                                        productId={product.id}
+                                                    />
                                                 }
+                                                className="watchlist-product-button"
                                             />
                                         </div>
-                                        <div className="name-level">
-                                            <h3>{pokemonName}</h3>
-                                            <h4>Level {product.level}</h4>
-                                        </div>
-                                        <div className="ability-nature-item">
-                                            <h4>Ability: {product.ability}</h4>
-                                            <h4>Nature: {product.nature}</h4>
-                                            <h4>Item: {product.item}</h4>
-                                        </div>
-                                        <div className="move-container">
-                                            <h5>{product.move_1}</h5>
-                                            <h5>{product.move_2}</h5>
-                                            <h5>{product.move_3}</h5>
-                                            <h5>{product.move_4}</h5>
-                                        </div>
-                                        <div className="shiny-container">
-                                            <h2
-                                                className={
-                                                    product.shiny
-                                                        ? "shiny"
-                                                        : "not-shiny"
-                                                }
-                                            >
-                                                {product.shiny
-                                                    ? "Shiny!"
-                                                    : "Not Shiny"}
-                                            </h2>
-                                        </div>
-                                        <div className="price-container">
-                                            <h3>${product.price}</h3>
-                                        </div>
-                                    </NavLink>
-                                    <div className="watchlist-button-container">
-                                        <OpenModalButton
-                                            buttonText="Remove"
-                                            modalComponent={
-                                                <RemoveFromWatchlist
-                                                    productId={product.id}
-                                                />
-                                            }
-                                            className="watchlist-product-button"
-                                        />
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })
+                        ) : (
+                            <h3 className="empty-watchlist-message">
+                                Your watchlist is empty!
+                            </h3>
+                        )}
                     </div>
                 )}
             </div>

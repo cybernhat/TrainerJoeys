@@ -143,16 +143,14 @@ NavLink {
 }
 
 .cart-button {
-    background-color: #c3b091; /* Red background */
-    color: white; /* White text color */
-    border: none; /* Remove default border */
+    background-color: #c3b091; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border if any */
+    padding: 10px 20px; /* Adjust padding */
     border-radius: 5px; /* Optional: rounded corners */
     cursor: pointer; /* Show a pointer cursor on hover */
     font-size: 13px; /* Adjust font size */
     font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
-    text-align: center; /* Center text */
-    text-decoration: none; /* Remove text underline if any */
-    display: inline-block; /* Make sure it respects padding */
     transition: background-color 0.3s ease; /* Smooth transition for background color */
     margin-bottom: 10px;
 }

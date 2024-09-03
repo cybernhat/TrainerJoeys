@@ -268,6 +268,18 @@ h3 {
     color: #555;
 }
 
+.review-delete-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.review-edit-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.add-review-button:hover {
+    cursor: pointer;
+}
 .description-box {
     overflow: hidden;
     text-overflow: elipses;

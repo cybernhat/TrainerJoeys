@@ -72,14 +72,14 @@ const ShoppingCart = () => {
                 ) : (
                     <p>Your cart is empty.</p>
                 )}
+                {cartItems.length > 0 && (
+                    <div id="button-container">
+                        <button onClick={() => handleClearCart(carts.id)}>
+                            Checkout
+                        </button>
+                    </div>
+                )}
             </div>
-            {cartItems.length > 0 && (
-                <div id="button-container">
-                    <button onClick={() => handleClearCart(carts.id)}>
-                        Checkout
-                    </button>
-                </div>
-            )}
         </div>
     );
 };

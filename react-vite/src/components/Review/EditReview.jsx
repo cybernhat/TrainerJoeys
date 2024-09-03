@@ -40,9 +40,9 @@ const EditReview = ({ reviewId }) => {
     };
 
     return (
-        <div id="review-form-container">
+        <div id="modal-container">
             <h1>Edit your review</h1>
-            <form onSubmit={handleSubmit}>
+            <form className='add-review-form' onSubmit={handleSubmit}>
                 <textarea
                     className="review-text-area"
                     placeholder="Leave a review"
@@ -78,7 +78,7 @@ const EditReview = ({ reviewId }) => {
                         <FaRegThumbsDown />
                     </button>
                 </div>
-                <button type="submit" className="submit-button">
+                <button type="submit" className="modal-button">
                     Submit
                 </button>
             </form>

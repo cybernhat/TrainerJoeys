@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import "./Profile.css";
 import * as productActions from "../../redux/product";
 import * as watchlistActions from "../../redux/watchlist";
-import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import DeleteProduct from "../../components/Product/DeleteProduct";
-import RemoveFromWatchlist from "../Watchlist/RemoveFromWatchlist";
+// import OpenModalButton from "../OpenModalButton/OpenModalButton";
+// import DeleteProduct from "../../components/Product/DeleteProduct";
+// import RemoveFromWatchlist from "../Watchlist/RemoveFromWatchlist";
 
 const ProfilePage = () => {
     const { userId } = useParams();
@@ -59,13 +59,14 @@ const ProfilePage = () => {
                         className={activeTab === "products" ? "active" : ""}
                         onClick={() => handleTabChange("products")}
                     >
-                        Products
+                        {" "}
+                        <h3 className="product-component-h3">Products</h3>
                     </div>
                     <div
                         className={activeTab === "watchlist" ? "watchlist" : ""}
                         onClick={() => handleTabChange("watchlist")}
                     >
-                        Watchlist
+                        <h3 className="product-component-h3">Watchlist</h3>
                     </div>
                 </div>
             </div>
@@ -130,17 +131,6 @@ const ProfilePage = () => {
                                             <h3>${product.price}</h3>
                                         </div>
                                     </NavLink>
-                                    <div id="user-product-edit-delete-container">
-                                        <OpenModalButton
-                                            buttonText="Delete"
-                                            modalComponent={
-                                                <DeleteProduct
-                                                    productId={product.id}
-                                                />
-                                            }
-                                            className="delete-product-button"
-                                        />
-                                    </div>
                                 </div>
                             );
                         })}
@@ -219,17 +209,6 @@ const ProfilePage = () => {
                                                 <h3>${product.price}</h3>
                                             </div>
                                         </NavLink>
-                                        <div id="user-product-edit-delete-container">
-                                            <OpenModalButton
-                                                buttonText="Remove"
-                                                modalComponent={
-                                                    <RemoveFromWatchlist
-                                                        productId={product.id}
-                                                    />
-                                                }
-                                                className="delete-product-button"
-                                            />
-                                        </div>
                                     </div>
                                 );
                             })

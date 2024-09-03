@@ -186,33 +186,37 @@ const OneProduct = () => {
                                                 {review.description}
                                             </p>
                                             <p>
-                                                Thumbs Up:{" "}
+                                                Rating:{" "}
                                                 {review.thumbs_up ? "👍" : "👎"}
                                             </p>
                                             {currUser &&
                                                 currUser.id ===
                                                     review.user_id && (
                                                     <div className="user-review-button">
-                                                        <OpenModalButton
-                                                            buttonText="Delete"
-                                                            modalComponent={
-                                                                <DeleteReview
-                                                                    reviewId={
-                                                                        review.id
-                                                                    }
-                                                                />
-                                                            }
-                                                        />
-                                                        <OpenModalButton
-                                                            buttonText="Edit"
-                                                            modalComponent={
-                                                                <EditReview
-                                                                    reviewId={
-                                                                        review.id
-                                                                    }
-                                                                />
-                                                            }
-                                                        />
+                                                        <div className="review-delete-button">
+                                                            <OpenModalButton
+                                                                buttonText="Delete"
+                                                                modalComponent={
+                                                                    <DeleteReview
+                                                                        reviewId={
+                                                                            review.id
+                                                                        }
+                                                                    />
+                                                                }
+                                                            />
+                                                        </div>
+                                                        <div className="review-edit-button">
+                                                            <OpenModalButton
+                                                                buttonText="Edit"
+                                                                modalComponent={
+                                                                    <EditReview
+                                                                        reviewId={
+                                                                            review.id
+                                                                        }
+                                                                    />
+                                                                }
+                                                            />
+                                                        </div>
                                                     </div>
                                                 )}
                                         </div>
