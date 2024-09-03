@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AddReview.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as reviewActions from "../../redux/review";
 import { useModal } from "../../context/Modal";
 import { FaRegThumbsUp } from "react-icons/fa";
@@ -14,7 +14,6 @@ const AddReview = ({ productId }) => {
     const [thumbsDown, setThumbsDown] = useState(false);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [errors, setErrors] = useState({});
-    const currUser = useSelector((state) => state.session.user);
 
     // Validate review input
     useEffect(() => {

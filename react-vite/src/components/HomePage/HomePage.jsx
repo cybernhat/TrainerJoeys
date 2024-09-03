@@ -140,23 +140,28 @@ const HomePage = () => {
                                             Add to Cart
                                         </button>
                                     )}
-                                    {isWatchlisted ? (
-                                        <span className="watchlisted-text">
-                                            Watchlisted
-                                        </span>
+                                    {currUser && currUser.watchlist ? (
+                                        isWatchlisted ? (
+                                            <span className="watchlisted-text">
+                                                Watchlisted
+                                            </span>
+                                        ) : (
+                                            <OpenModalButton
+                                                buttonText="Add to Watchlist"
+                                                modalComponent={
+                                                    <AddToWatchlist
+                                                        productId={product.id}
+                                                        watchlistId={
+                                                            currUser.watchlist
+                                                                .id
+                                                        }
+                                                    />
+                                                }
+                                                className="add-to-watchlist-button"
+                                            />
+                                        )
                                     ) : (
-                                        <OpenModalButton
-                                            buttonText="Add to Watchlist"
-                                            modalComponent={
-                                                <AddToWatchlist
-                                                    productId={product.id}
-                                                    watchlistId={
-                                                        currUser.watchlist.id
-                                                    }
-                                                />
-                                            }
-                                            className="add-to-watchlist-button"
-                                        />
+                                        <span>Loading...</span> // Handle case when currUser.watchlist is not available
                                     )}
                                 </div>
                             )}

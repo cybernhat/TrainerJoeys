@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Profile.css";
 import * as productActions from "../../redux/product";
@@ -11,7 +11,7 @@ import RemoveFromWatchlist from "../Watchlist/RemoveFromWatchlist";
 const ProfilePage = () => {
     const { userId } = useParams();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState("products");
 
     const productsObj = useSelector((state) => state.product);
@@ -33,8 +33,6 @@ const ProfilePage = () => {
     const sampleProduct = userProducts.find(
         (product) => product.user_id === parseInt(userId, 10)
     );
-
-    console.log("AAAAAAAAAAAAAAAAA", userWatchlist);
 
     useEffect(() => {
         dispatch(productActions.fetchAllProducts());

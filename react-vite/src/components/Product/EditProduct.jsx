@@ -1,17 +1,17 @@
 import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import * as productActions from "../../redux/product";
-import * as pokemonActions from "../../redux/pokemon";
+// import * as pokemonActions from "../../redux/pokemon";
 import * as productImageActions from "../../redux/productimage";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./EditProduct.css";
 import { useEffect, useState } from "react";
 
 const EditProduct = ({ productId }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const navigate = useNavigate();
-    const currUser = useSelector(state => state.session.user)
+    // const navigate = useNavigate();
+    // const currUser = useSelector(state => state.session.user)
     const product = useSelector(state => state.product[productId])
     const productImage = product?.product_image?.[0]
     const productImageId = productImage?.id
@@ -38,7 +38,7 @@ const EditProduct = ({ productId }) => {
 
     useEffect(() => {
         dispatch(productActions.fetchOneProduct(productId))
-    }, [dispatch])
+    }, [dispatch, productId])
 
     console.log('AAAAAAAAAAAAA', productImageId)
 

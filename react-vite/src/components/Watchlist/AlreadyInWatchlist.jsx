@@ -1,4 +1,4 @@
-export { useModal } from "../../context/Modal";
+import { useModal } from "../../context/Modal";
 
 const AlreadyInWatchlist = () => {
     const { closeModal } = useModal();

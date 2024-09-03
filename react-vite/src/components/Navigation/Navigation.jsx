@@ -2,16 +2,16 @@ import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect, useRef } from "react";
-import OpenModalMenuItem from "./OpenModalMenuItem";
+import { useEffect } from "react";
+// import OpenModalMenuItem from "./OpenModalMenuItem";
 import { FaCartShopping } from "react-icons/fa6";
-import CartModal from "../Cart/ShoppingCart";
-import OpenModalButton from "../OpenModalButton/OpenModalButton";
+// import CartModal from "../Cart/ShoppingCart";
+// import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import * as cartActions from "../../redux/cart";
 
 function Navigation() {
     const dispatch = useDispatch();
-    const [showCartModal, setShowCartModal] = useState(false);
+    // const [showCartModal, setShowCartModal] = useState(false);
 
     const user = useSelector((state) => state.session.user);
     const cartsObj = useSelector((state) => state.cart);
