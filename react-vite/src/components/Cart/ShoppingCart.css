@@ -7,4 +7,62 @@
         0.5
     ); /* Light grey with 80% opacity */
     color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-pokemon-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.shopping-cart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 1000px;
+}
+
+#product-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 15px; /* Gap between items in the card */
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width:1000px;
+}
+
+#product-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between text elements */
+}
+
+.product-card-info h2,
+.product-card-info h3 {
+    margin: 0; /* Remove default margin */
+}
+
+.product-card-info h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.product-card-info h3 {
+    font-size: 1rem;
+    font-weight: 400;
 }

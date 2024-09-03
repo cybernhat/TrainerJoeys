@@ -50,3 +50,22 @@ def delete_product_from_cart(cart_id, product_id):
     db.session.commit()
 
     return jsonify({"message": "product successfully removed from wathclist"})
+
+
+@cart_routes.route("/<int:cart_id>/clear", methods=["DELETE"])
+@login_required
+def clear_shopping_cart(cart_id):
+    # Query all CartItems for the given cart_id
+    items_to_delete = CartItem.query.filter_by(cart_id=cart_id).all()
+
+    if not items_to_delete:
+        return jsonify({"error": "No items found for this cart"}), 404
+
+    # Delete all the queried CartItems
+    for item in items_to_delete:
+        db.session.delete(item)
+
+    # Commit the transaction
+    db.session.commit()
+
+    return jsonify({"message": "All items removed from cart"}), 200

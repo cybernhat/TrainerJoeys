@@ -1,11 +1,14 @@
 import "./OneProduct.css";
 import * as productActions from "../../redux/product";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import EditProduct from "./EditProduct";
+import DeleteReview from "../Review/DeleteReview";
+import AddReview from "../Review/AddReview";
+import EditReview from "../Review/EditReview";
+import * as reviewActions from "../../redux/review";
 
 const OneProduct = () => {
     const { productId } = useParams();
@@ -13,33 +16,49 @@ const OneProduct = () => {
 
     const currUser = useSelector((state) => state.session.user);
     const product = useSelector((state) => state.product[productId]);
-    const productPokemon = product?.pokemon; // Use optional chaining
+    const productPokemon = product?.pokemon;
+
+    const reviewsObj = useSelector((state) => state.review);
+    const reviews = Object.values(reviewsObj);
+    const productReviews = product
+        ? reviews.filter((review) => review.product_id === product.id)
+        : [];
+
+    const hasReviewed = productReviews.some(
+        (review) => review.user_id === currUser?.id
+    );
+
+    console.log("Product Reviews:", productReviews);
 
     const productName =
         productPokemon?.name.charAt(0).toUpperCase() +
         productPokemon?.name.slice(1);
-        
+
     const productImage = product?.product_image;
 
     useEffect(() => {
         dispatch(productActions.fetchOneProduct(productId));
+        dispatch(reviewActions.fetchAllReviews());
     }, [dispatch, productId]);
 
     return (
         <div id="product-page-container">
             <div id="product-container">
-                {/* Conditional rendering to ensure product is defined */}
                 {product ? (
                     <>
                         {currUser?.id === product.user_id && (
                             <OpenModalButton
                                 buttonText="Edit Product"
-                                modalComponent={<EditProduct />}
+                                modalComponent={
+                                    <EditProduct productId={product.id} />
+                                }
                                 className="edit-product-button"
-                                productId={product.id}
                             />
                         )}
                         <div className="product-card">
+                            <NavLink to={`/profile/${product?.user.id}`}>
+                            <h4>Posted by {product?.user.username}</h4>
+                            </NavLink>
                             <div className="pokemon-name-img-type-container">
                                 <h2 className="name-container">
                                     {productName}
@@ -114,10 +133,70 @@ const OneProduct = () => {
                                 <h2 className="price-container">
                                     ${product.price}
                                 </h2>
-                                {/* Uncomment this if you have a quantity field */}
-                                {/* <h2 className="quantity-container">
-                                    {product.quantity}
-                                </h2> */}
+                            </div>
+
+                            {/* Reviews Section */}
+                            <div id="review-cart">
+                                <h2>Reviews</h2>
+                                <h3>{productReviews.length} reviews </h3>
+                                {productReviews.length > 0 ? (
+                                    productReviews.map((review) => (
+                                        <div
+                                            key={review.id}
+                                            className="review-card"
+                                        >
+                                            <h3>{review.user.username}</h3>
+                                            <p className='description-box'>{review.description}</p>
+                                            <p>
+                                                Thumbs Up:{" "}
+                                                {review.thumbs_up ? "👍" : "👎"}
+                                            </p>
+                                            {currUser &&
+                                                currUser.id ===
+                                                    review.user_id && (
+                                                    <div className="user-review-button">
+                                                        <OpenModalButton
+                                                            buttonText="Delete"
+                                                            modalComponent={
+                                                                <DeleteReview
+                                                                    reviewId={
+                                                                        review.id
+                                                                    }
+                                                                />
+                                                            }
+                                                        />
+                                                        <OpenModalButton
+                                                            buttonText="Edit"
+                                                            modalComponent={
+                                                                <EditReview
+                                                                    reviewId={
+                                                                        review.id
+                                                                    }
+                                                                />
+                                                            }
+                                                        />
+                                                    </div>
+                                                )}
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No reviews yet.</p>
+                                )}
+
+                                {/* Add Review Button */}
+                                {!hasReviewed &&
+                                    currUser &&
+                                    currUser.id !== product.user_id && (
+                                        <OpenModalButton
+                                            buttonText="Add Review"
+                                            modalComponent={
+                                                <AddReview
+                                                    productId={product.id}
+                                                />
+                                            }
+                                            className="add-review-button"
+                                        />
+                                    )}
                             </div>
                         </div>
                     </>

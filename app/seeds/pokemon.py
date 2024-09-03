@@ -1,6 +1,7 @@
 import os
 import requests
 from app.models import db, Pokemon, environment, SCHEMA
+from sqlalchemy.sql import text
 
 
 def fetch_pokemon_data(generation):
@@ -20,11 +21,14 @@ def fetch_pokemon_data(generation):
         details_response = requests.get(pokemon_details_url)
         details_data = details_response.json()
 
-        # Fetching the official sprite
+        # Fetching the official sprite and mini sprite
         sprites = details_data.get("sprites", {})
-        other = sprites.get("other", {})
-        official_artwork = other.get("official-artwork", {})
-        pokemon_img = official_artwork.get("front_default", "default_image_url")
+        pokemon_img = (
+            sprites.get("other", {})
+            .get("official-artwork", {})
+            .get("front_default", "default_image_url")
+        )
+        pokemon_sprite = sprites.get("front_default", "default_sprite_url")
 
         # Fetch Pokémon types
         types = [
@@ -41,6 +45,7 @@ def fetch_pokemon_data(generation):
                 "id": pokemon_id,
                 "name": pokemon_name,
                 "pokemon_img": pokemon_img,
+                "pokemon_sprite": pokemon_sprite,
                 "type_1": type_1,
                 "type_2": type_2,
             }
@@ -53,13 +58,14 @@ def fetch_pokemon_data(generation):
 
 
 def seed_pokemon():
-    # Fetch Pokémon data for Generation 1 only
+    # Fetch Pokémon data for Generation 1 only (adjust generation number as needed)
     all_pokemon = fetch_pokemon_data(1)
 
     for pokemon in all_pokemon:
         new_pokemon = Pokemon(
             name=pokemon["name"],
             pokemon_img=pokemon["pokemon_img"],
+            pokemon_sprite=pokemon["pokemon_sprite"],
             type_1=pokemon["type_1"],
             type_2=pokemon["type_2"],
         )

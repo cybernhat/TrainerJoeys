@@ -10,6 +10,7 @@ class Pokemon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(500), nullable=False)
     pokemon_img = db.Column(db.String(1000), nullable=False)
+    pokemon_sprite = db.Column(db.String(1000), nullable=False)
     type_1 = db.Column(db.String(55), nullable=False)
     type_2 = db.Column(db.String(55), nullable=True)
 
@@ -18,6 +19,7 @@ class Pokemon(db.Model):
             "id": self.id,
             "name": self.name,
             "pokemon_img": self.pokemon_img,
+            "pokemon_sprite": self.pokemon_sprite,
             "type_1": self.type_1,
             "type_2": self.type_2 if self.type_2 else None
         }

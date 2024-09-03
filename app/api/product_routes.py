@@ -84,7 +84,7 @@ def update_product(product_id):
     data = request.get_json()
 
     # Update product fields with the data from the request
-    product.level = data.get("level", product_level)
+    product.level = data.get("level", product.level)
     product.item = data.get("item", product.item)
     product.game = data.get("game", product.game)
     product.generation = data.get("generation", product.generation)
@@ -108,7 +108,7 @@ def delete_product_by_id(product_id):
     product = Product.query.get(product_id)
 
     if product:
-        db.session.delete(product) 
+        db.session.delete(product)
         db.session.commit()
         return jsonify({"message": "Product deleted"}), 200  # return a JSON response
     else:

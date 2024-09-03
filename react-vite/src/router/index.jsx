@@ -8,7 +8,7 @@ import OneProduct from '../components/Product/OneProduct';
 import EditProduct from '../components/Product/EditProduct';
 import UserPage from '../components/UserPage/UserPage';
 import ShoppingCart from '../components/Cart/ShoppingCart';
-
+import ProfilePage from '../components/Profile/Profile';
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path:'/user/cart',
         element: <ShoppingCart/>
+      },
+      {
+        path: '/profile/:userId',
+        element: <ProfilePage/>
       }
 
     ],

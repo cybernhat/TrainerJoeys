@@ -1,0 +1,31 @@
+/* AddReview.css */
+.thumbs-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.thumbs-up-button, .thumbs-down-button {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.thumbs-up-button.active, .thumbs-down-button.active {
+    color: green;
+}
+
+.thumbs-down-button.active {
+    color: red;
+}
+
+.submit-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}

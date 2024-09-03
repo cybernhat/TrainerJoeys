@@ -1,11 +1,11 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Product, Pokemon, Review
+from app.models import Product, Pokemon, Review, db
 
 review_routes = Blueprint("reviews", __name__)
 
 
-@review_routes.route("/")
+@review_routes.route("/get")
 def get_all_reviews():
     reviews = Review.query.all()
 
@@ -16,6 +16,30 @@ def get_all_reviews():
 
     return jsonify(reviews_list)
 
+
+@review_routes.route("/<int:product_id>/create", methods=["POST"])
+@login_required
+def create_review(product_id):
+    data = request.json
+
+    # Ensure the required field 'description' is present
+    if "description" not in data:
+        return jsonify({"error": "Missing required field: description"}), 400
+
+    # Create a new review using the product_id from the URL parameter
+    new_review = Review(
+        user_id=current_user.id,
+        product_id=product_id,
+        description=data.get("description"),
+        thumbs_up=data.get("thumbs_up", False),
+        thumbs_down=data.get("thumbs_down", False),
+    )
+
+    # Add the new review to the database
+    db.session.add(new_review)
+    db.session.commit()
+
+    return jsonify(new_review.to_dict()), 201
 
 @review_routes.route("/<int:review_id>/edit", methods=["PUT"])
 @login_required
@@ -45,9 +69,8 @@ def edit_review_by_id(review_id):
         200,
     )
 
-@review_routes.route(
-    "/<int:review_id>/delete", methods=["DELETE"]
-)
+
+@review_routes.route("/<int:review_id>/delete", methods=["DELETE"])
 @login_required
 def delete_Review(review_id):
     review_to_delete = Review.query.get(review_id)
@@ -59,7 +82,7 @@ def delete_Review(review_id):
         return jsonify({"message": "Unauthorized"}), 403
 
     db.session.delete(review_to_delete)
-    db.commit()
+    db.session.commit()
 
     return (
         jsonify(
@@ -70,7 +93,6 @@ def delete_Review(review_id):
         ),
         200,
     )
-
 
     # form=ReviewForm()
     # form['csrf_token'].data = request.cookies['csrf_token']

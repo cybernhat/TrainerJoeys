@@ -67,8 +67,6 @@ const UploadPicture = () => {
         setProductImageError("");
     };
 
-    console.log("AAAAAAAAAAAAAAA", pokemonId);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 

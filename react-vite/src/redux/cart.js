@@ -1,6 +1,7 @@
 const GET_ALL_CART = "cart/getAllCart";
 const ADD_TO_CART = "cart/addToCart";
 const DELETE_FROM_CART = "cart/deleteFromCart";
+const CLEAR_CART = "cart/clearCart";
 
 const getAllCart = (cart) => {
     return {
@@ -18,6 +19,11 @@ const deleteFromCart = (cartId, productId) => ({
 const addToCart = (cartItem, cartId) => ({
     type: ADD_TO_CART,
     cartItem,
+    cartId,
+});
+
+const clearCart = (cartId) => ({
+    type: CLEAR_CART,
     cartId,
 });
 
@@ -70,6 +76,23 @@ export const deleteProductFromCart =
         }
     };
 
+export const clearCartItems = (cartId) => async (dispatch) => {
+    const response = await fetch(`/api/carts/${cartId}/clear`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (response.ok) {
+        dispatch(clearCart(cartId));
+    } else {
+        const error = await response.json();
+        console.error("Failed to clear cart:", error);
+        return error;
+    }
+};
+
 const initialState = {};
 
 function cartReducer(state = initialState, action) {
@@ -95,7 +118,7 @@ function cartReducer(state = initialState, action) {
             } else {
                 newState[cartId] = {
                     id: cartId,
-                    cart_products: [action.cartItem],
+                    cart_items: [action.cartItem],
                 };
             }
             return newState;
@@ -113,9 +136,15 @@ function cartReducer(state = initialState, action) {
             }
             return newState;
         }
+        case CLEAR_CART: {
+            const newState = { ...state };
+            // Remove the cart from state
+            delete newState[action.cartId];
+            return newState;
+        }
         default:
             return state;
     }
 }
 
-export default cartReducer
+export default cartReducer;

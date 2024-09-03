@@ -6,6 +6,7 @@
     padding: 20px;
     background-color: #f4f4f4;
     min-height: 100vh;
+    font-family: Arial, sans-serif; /* Ensure consistent font across the container */
 }
 
 #product-container {
@@ -13,9 +14,9 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 1200px; /* Set a max-width to prevent it from becoming too wide on large screens */
-    min-height: 80vh; /* Ensure it takes up most of the vertical space */
-    padding: 40px; /* Increase padding for more spacing inside the container */
+    max-width: 1200px;
+    min-height: 80vh;
+    padding: 40px;
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -24,7 +25,7 @@
 .product-card {
     display: flex;
     flex-direction: column;
-    gap: 40px; /* Increase gap for better spacing between sections */
+    gap: 40px;
 }
 
 /* Name and Image Styling */
@@ -32,17 +33,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px; /* Increase gap for better spacing */
+    gap: 25px;
 }
 
 .name-container {
-    font-size: 36px; /* Increase font size */
+    font-size: 36px;
     font-weight: bold;
     color: #333;
 }
 
 .img_container {
-    width: 500px; /* Increase image size */
+    width: 500px;
     height: 500px;
     object-fit: contain;
     border-radius: 50%;
@@ -53,7 +54,7 @@
 .type-container {
     display: flex;
     gap: 15px;
-    font-size: 20px; /* Increase font size */
+    font-size: 20px;
     color: #555;
 }
 
@@ -67,20 +68,134 @@
     text-align: center;
 }
 
+/* Info Container Styling */
 .info-container {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap; /* Allows the content to wrap on smaller screens */
+    gap: 20px;
 }
 
-#product-page-container {
-    padding: 20px;
-    background-color: rgba(245, 245, 245, 0.5); /* Light grey with 80% opacity */
-    font-family: Arial, sans-serif;
+.info-container div {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Game Data and Description Styling */
+.game-data-container {
+    margin-top: 20px;
+}
+
+.description-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.description {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin: 10px;
+}
+
+.description-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Quantity and Price Styling */
+.quantity-price-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.price-container {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e60023;
+}
+
+/* Reviews Section Styling */
+#review-cart {
+    margin-top: 20px;
+}
+
+.review-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin: 0;
+}
+
+.review-card p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Buttons Styling */
+.user-review-button {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-product-button,
+.add-review-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.edit-product-button button,
+.add-review-button button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-product-button button:hover,
+.add-review-button button:hover {
+    background-color: #0056b3;
+}
+
+/* General Styling */
+p {
+    font-size: 16px;
+    color: #999;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 0 0 10px;
     color: #333;
 }
 
+h3 {
+    font-size: 18px;
+    margin: 0;
+    color: #555;
+}
 
-
+.description-box {
+    overflow: hidden;
+    text-overflow: ellipsis
+}
 
 
 

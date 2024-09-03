@@ -10,13 +10,15 @@ import productsReducer from "./product";
 import pokemonReducer from "./pokemon";
 import watchlistReducer from "./watchlist";
 import cartReducer from "./cart";
+import reviewsReducer from "./review";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   product: productsReducer,
   pokemon: pokemonReducer,
   watchlist: watchlistReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  review: reviewsReducer
 });
 
 let enhancer;

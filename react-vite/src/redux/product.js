@@ -28,6 +28,31 @@ const removeProduct = (productId) => {
     };
 };
 
+const editProduct = (product) => {
+    return {
+        type: EDIT_PRODUCT,
+        product,
+    };
+};
+
+export const putProduct = (product, productId) => async (dispatch) => {
+    const response = await fetch(`/api/products/${productId}/edit`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+    });
+
+    if (response.ok) {
+        const updatedProduct = await response.json();
+
+        dispatch(editProduct(updatedProduct));
+
+        return updatedProduct;
+    }
+};
+
 export const fetchAllProducts = () => async (dispatch) => {
     const response = await fetch("/api/products");
 
@@ -123,6 +148,12 @@ function productsReducer(state = initialState, action) {
             const newState = { ...state };
             delete newState[action.productId]; // Remove the deleted product from the state
             return newState;
+        }
+        case EDIT_PRODUCT: {
+            return {
+                ...state,
+                [action.product.id]: action.product,
+            };
         }
         default:
             return state;
