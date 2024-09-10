@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import current_user, login_required
-from app.models import db, Product, Review
+from app.models import db, Product, Review, WatchlistItem, Watchlist
 from app.forms import ProductForm, ReviewForm
 
 product_routes = Blueprint("products", __name__)
@@ -37,7 +37,7 @@ def post_product():
         return jsonify({"message": "No data provided"}), 400
 
     # You may want to manually handle validation or use a schema validation library
-    shiny = data.get('shiny', False)  # Default to False if not provided
+    shiny = data.get("shiny", False)  # Default to False if not provided
 
     new_product = Product(
         user_id=current_user.id,
@@ -106,12 +106,23 @@ def update_product(product_id):
 
 @product_routes.route("/<int:product_id>/delete", methods=["DELETE"])
 def delete_product_by_id(product_id):
+    # Query the product to delete
     product = Product.query.get(product_id)
 
     if product:
+        # Find all related WatchlistItems
+        related_watchlist_items = WatchlistItem.query.filter_by(
+            product_id=product_id
+        ).all()
+
+        # Delete related WatchlistItems
+        for item in related_watchlist_items:
+            db.session.delete(item)
+
+        # Now safely delete the product
         db.session.delete(product)
         db.session.commit()
-        return jsonify({"message": "Product deleted"}), 200  # return a JSON response
+        return jsonify({"message": "Product deleted"}), 200  # Return a JSON response
     else:
         return jsonify({"message": "Product not found"}), 404
 

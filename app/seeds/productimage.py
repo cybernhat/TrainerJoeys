@@ -31,7 +31,7 @@ def seed_productimages():
             product_id=5,
         ),
         ProductImage(
-            img_url="https://static.wikia.nocookie.net/pokepasta/images/1/17/Pokemon_gengar_8.jpg/revision/latest?cb=20210316074803",
+            img_url="https://pokefella.com/cdn/shop/products/PokefellaSet-Gengargmaxultrashiny_1024x1024.png?v=1584863643",
             filename="productimage6_filename.jpg",
             product_id=6,
         ),
@@ -61,7 +61,7 @@ def seed_productimages():
             product_id=11,
         ),
         ProductImage(
-            img_url="https://static.wikia.nocookie.net/international-pokedex/images/d/d6/Venusaur_%28FRLG%29.png/revision/latest/scale-to-width-down/230?cb=20180309171012",
+            img_url="https://pokefella.com/cdn/shop/products/Venusaur_ad75dfbc-30b0-4174-b26a-e26ea02509aa_1024x.png?v=1592721407",
             filename="productimage12_filename.jpg",
             product_id=12,
         ),
@@ -84,6 +84,7 @@ def seed_productimages():
 
     db.session.add_all(product_images)
     db.session.commit()
+
 
 def undo_productimages():
     if environment == "production":

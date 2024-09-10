@@ -153,6 +153,7 @@ NavLink {
     font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
     transition: background-color 0.3s ease; /* Smooth transition for background color */
     margin-bottom: 10px;
+    width: 116.67px;
 }
 
 .cart-button:hover {
@@ -160,9 +161,27 @@ NavLink {
 }
 
 .cart-text {
-    margin-top: 7px;
+    background-color: gray; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border if any */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Optional: rounded corners *//* Show a pointer cursor on hover */
+    font-size: 13px; /* Adjust font size */
+    font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .watchlisted-text {
-    margin-top: 7px;
+    background-color: gray; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border if any */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Optional: rounded corners */ /* Show a pointer cursor on hover */
+    font-size: 13px; /* Adjust font size */
+    font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-bottom: 10px;
+    text-align: center;
 }

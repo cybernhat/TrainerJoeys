@@ -20,9 +20,10 @@
     box-sizing: border-box;
     background-color: rgba(245, 245, 245);
     overflow: hidden;
+    border: 2px solid black;
 }
 
-.modal-button-container {
+.product-modal-button-container {
     background: #c3b091; /* Bright blue background color */
     border: 1px solid #c3b091; /* Matching border color */
     color: white; /* White text color for contrast */
@@ -35,6 +36,7 @@
     text-decoration: none; /* Remove underline */
     transition: background-color 0.3s, border-color 0.3s; /* Smooth transition effects */
     margin-left: 960px;
+    transform: translate(0, -545px)
 }
 
 .posted-user-container {
@@ -72,33 +74,37 @@
 .pokemon-name-img-type-container {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    gap: 25px;
+    gap: 10px;
+    margin-bottom: -500px;
 }
 
 .ability-item-nature-container {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transform: translate(
+        140px,
+        -500px
+    ); /* Move 200px to the right and 200px up */
 }
 
-.ability-container {
-    margin-right: -75px;
-    margin-top: 20px;
-}
-.item-container,
-.nature-container {
-    margin-top: 20px;
-    margin-right: -50px;
-}
-.name-container {
+.name-level-container {
     font-size: 36px;
     font-weight: bold;
     color: #333;
+    margin-left: -930px;
 }
 
-.img_container {
-    width: 300px;
-    height: 300px;
+.img-container {
+    width: 500px;
+    height: 500px;
     object-fit: contain;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-left: -600px;
+    margin-top: -60px;
 }
 
 .type-container {
@@ -106,8 +112,14 @@
     gap: 15px;
     font-size: 20px;
     color: #555;
+    margin-left: -500px;
+    transform: translateY(-95px); /* Move up by 200px */
+    margin-right: 40px;
 }
 
+.product-shiny-container {
+    transform: translateY(px);
+}
 .pokemon-type {
     padding: 5px 10px;
     border-radius: 5px;
@@ -121,14 +133,25 @@
 #moves-info {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    align-items: center;
+    align-items: left;
 }
 
-.moves-container {
+.product-moves-container {
     border: 1px solid grey;
     border-radius: 10px;
     padding: 20px;
+    width: 300px;
+    height: 60px; /* Adjust height to fit 2 rows */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;/* 2 columns of equal width */ /* Optional: space between moves */
+}
+
+
+.price-container {
+    font-size: 28px;
+    font-weight: bold;
+    transform: translate(-33px, -20px);
 }
 /* Info Container Styling */
 .info-container {
@@ -147,6 +170,10 @@
 .game-data-container {
     display: flex;
     flex-direction: column;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    transform: translate(5px, -60px);
 }
 
 .description-image-container {
@@ -159,11 +186,12 @@
 .description-image {
     width: 500px;
     height: 250px;
+    border: 1px solid black;
 }
 .description {
     font-size: 18px;
     color: #666;
-    text-align: center;
+    text-align: left;
     margin: 10px;
     margin-top: -210px;
     overflow: hidden;
@@ -177,20 +205,16 @@
 }
 
 /* Quantity and Price Styling */
-.quantity-price-container {
+.product-quantity-price-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-}
-
-.price-container {
-    font-size: 28px;
-    font-weight: bold;
+    transform: translate(-25px, 8px);
 }
 
 /* Reviews Section Styling */
 #review-cart {
     margin-top: 20px;
+    border-top: 2px solid black;
 }
 
 .review-card {
@@ -250,7 +274,77 @@
     border-radius: 10px;
     padding: 5px;
 }
-/* General Styling */
+
+.product-cart-button {
+    background-color: #c3b091; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border if any */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Optional: rounded corners */
+    cursor: pointer; /* Show a pointer cursor on hover */
+    font-size: 13px; /* Adjust font size */
+    font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-bottom: 10px;
+    width: 160px;
+    text-align: center;
+}
+
+.product-add-to-watchlist-button {
+    background-color: #c3b091; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border if any */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Optional: rounded corners */
+    cursor: pointer; /* Show a pointer cursor on hover */
+    font-size: 13px; /* Adjust font size */
+    font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-bottom: 10px;
+    width: 120px;
+    text-align: center;
+}
+
+.product-cart-watchlist {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    transform: translate(430px, -140px)
+}
+
+.product-user-product{
+    transform: translate(430px, -790px)
+}
+.product-cart-text {
+    background-color: gray; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border if any */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Optional: rounded corners *//* Show a pointer cursor on hover */
+    font-size: 13px; /* Adjust font size */
+    font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-bottom: 10px;
+    width: 120px;
+    text-align: center;
+}
+
+.product-watchlisted-text {
+    background-color: gray; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border if any */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Optional: rounded corners */ /* Show a pointer cursor on hover */
+    font-size: 13px; /* Adjust font size */
+    font-family: "Pixelify Sans", sans-serif; /* Optional: use your font */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-bottom: 10px;
+    width: 120px;
+    text-align: center;
+}
+
+
+
 p {
     font-size: 16px;
     color: #999;

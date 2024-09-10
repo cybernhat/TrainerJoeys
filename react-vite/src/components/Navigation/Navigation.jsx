@@ -44,7 +44,7 @@ function Navigation() {
                             className="create-product-button-container"
                             to="/products/upload"
                         >
-                            Create Product
+                            List Pokemon
                         </NavLink>
                         <NavLink
                             className="shopping-cart-container"

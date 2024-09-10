@@ -105,6 +105,11 @@ form#create-product-form button[type="submit"]:hover {
     background-color: #c3b151;
 }
 
+.ability-container {
+    transform: translate(0, 10px)
+}
+
+
 /* Field Containers */
 .level-container,
 .ability-container,
@@ -155,6 +160,11 @@ form#create-product-form button[type="submit"]:hover {
     margin-top: -50px;
     margin-bottom: 16px;
     gap: 30px;
+    transform: translate(0, 20px)
+}
+
+.nature-container {
+    transform: translate(-50px, 0)
 }
 /* Additional styles for items inside the container */
 .nature-container {

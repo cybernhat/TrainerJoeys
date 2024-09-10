@@ -1,7 +1,7 @@
 import "./OneProduct.css";
 import * as productActions from "../../redux/product";
 import { useParams, NavLink } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import EditProduct from "./EditProduct";
@@ -9,6 +9,9 @@ import DeleteReview from "../Review/DeleteReview";
 import AddReview from "../Review/AddReview";
 import EditReview from "../Review/EditReview";
 import * as reviewActions from "../../redux/review";
+import * as cartActions from "../../redux/cart";
+import * as watchlistActions from "../../redux/watchlist";
+import AddToWatchlist from "../Watchlist/AddToWatchlist";
 
 const OneProduct = () => {
     const { productId } = useParams();
@@ -18,11 +21,37 @@ const OneProduct = () => {
     const product = useSelector((state) => state.product[productId]);
     const productPokemon = product?.pokemon;
 
+    const cartsObj = useSelector((state) => state.cart);
+    const carts = Object.values(cartsObj);
+    const [localCart, setLocalCart] = useState([]);
+
+    const watchlistsObj = useSelector((state) => state.watchlist);
+    const watchlists = Object.values(watchlistsObj);
+
+    const userCart =
+        (currUser &&
+            carts.find((cart) => cart.user_id === currUser.id)?.cart_items) ||
+        [];
+
+    const userCartId =
+        (currUser && carts.find((cart) => cart.user_id === currUser.id)?.id) ||
+        "";
+
+    useEffect(() => {
+        setLocalCart(userCart);
+    }, [userCart]);
+
     const reviewsObj = useSelector((state) => state.review);
     const reviews = Object.values(reviewsObj);
     const productReviews = product
         ? reviews.filter((review) => review.product_id === product.id)
         : [];
+
+    const userWatchlist =
+        (currUser &&
+            watchlists.find((watchlist) => watchlist.user_id === currUser.id)
+                ?.watchlist_products) ||
+        [];
 
     const thumbsUpCount = productReviews.filter(
         (review) => review.thumbs_up
@@ -31,6 +60,20 @@ const OneProduct = () => {
         (review) => review.thumbs_down
     ).length;
 
+    useEffect(() => {
+        setLocalCart(userCart);
+    }, [userCart]);
+
+    const handleAddToCart = (productId) => {
+        dispatch(cartActions.addProductToCart(userCartId, productId)).then(
+            () => {
+                // Update local state to reflect the change
+                setLocalCart([...localCart, { id: productId }]);
+            }
+        );
+        console.log("Success!");
+    };
+
     const sentiment =
         thumbsUpCount > thumbsDownCount
             ? "Mostly Positive"
@@ -38,9 +81,9 @@ const OneProduct = () => {
             ? "Mostly Negative"
             : "Mixed";
 
-    const hasReviewed = productReviews.some(
-        (review) => review.user_id === currUser?.id
-    );
+    const hasReviewed =
+        currUser &&
+        productReviews.some((review) => review.user_id === currUser.id);
 
     const productName =
         productPokemon?.name.charAt(0).toUpperCase() +
@@ -51,7 +94,15 @@ const OneProduct = () => {
     useEffect(() => {
         dispatch(productActions.fetchOneProduct(productId));
         dispatch(reviewActions.fetchAllReviews());
+        dispatch(cartActions.fetchAllCarts());
+        dispatch(watchlistActions.fetchAllWatchlist());
     }, [dispatch, productId]);
+
+    const isWatchlisted = userWatchlist.some(
+        (watchlistProduct) => watchlistProduct.id === product.id
+    );
+
+    const isInCart = localCart?.some((cartItem) => cartItem?.id === product?.id);
 
     return (
         <div id="product-page-container">
@@ -66,15 +117,10 @@ const OneProduct = () => {
                                 <h4>Posted by {product?.user.username}</h4>
                             </NavLink>
                             <div className="pokemon-name-img-type-container">
-                                <h2 className="name-container">
+                                <h2 className="name-level-container">
                                     {productName}
+                                    <h2>Level {product.level}</h2>
                                 </h2>
-                                <h2>Level {product.level}</h2>
-                                <img
-                                    src={productPokemon?.pokemon_img}
-                                    alt={productPokemon?.name}
-                                    className="img_container"
-                                />
                                 <div className="type-container">
                                     <h3
                                         className={`pokemon-type ${productPokemon?.type_1.toLowerCase()}`}
@@ -89,44 +135,109 @@ const OneProduct = () => {
                                         </h3>
                                     )}
                                 </div>
-                            </div>
-                            <div className="info-container">
+                                <img
+                                    src={productPokemon?.pokemon_img}
+                                    alt={productPokemon?.name}
+                                    className="img-container"
+                                />
                                 <div className="ability-item-nature-container">
-                                    <div className="ability-container">
-                                        <h2>Ability</h2>
+                                    <div className="product-ability-container">
+                                        <h2>Ability:</h2>
                                         <h3>{product.ability}</h3>
                                     </div>
-                                    <div className="item-container">
-                                        <h2>Held Item</h2>
+                                    <div className="product-item-container">
+                                        <h2>Held Item:</h2>
                                         <h3>{product.item}</h3>
                                     </div>
-                                    <div className="nature-container">
-                                        <h2>Nature</h2>
+                                    <div className="product-nature-container">
+                                        <h2>Nature:</h2>
                                         <h3>{product.nature}</h3>
                                     </div>
-                                </div>
-                                <div className="shiny-container">
-                                    <h2>
-                                        Shiny: {product.shiny ? "Yes" : "No"}
-                                    </h2>
-                                </div>
-                                <div id="moves-info">
-                                    <h2>Moves</h2>
-                                    <div className="moves-container">
-                                        <h3>{product.move_1}</h3>
-                                        <h3>{product.move_2}</h3>
-                                        <h3>{product.move_3}</h3>
-                                        <h3>{product.move_4}</h3>
+                                    <div className="product-shiny-container">
+                                        <h2>
+                                            Shiny:{" "}
+                                            {product.shiny ? "Yes" : "No"}
+                                        </h2>
                                     </div>
+                                    <div id="moves-info">
+                                        <h2>Moves:</h2>
+                                        <div className="product-moves-container">
+                                            <h3>{product.move_1}</h3>
+                                            <h3>{product.move_2}</h3>
+                                            <h3>{product.move_3}</h3>
+                                            <h3>{product.move_4}</h3>
+                                        </div>
+                                    </div>
+                                    <div className="product-quantity-price-container">
+                                        <h2 className="price-container">
+                                            ${product.price}
+                                        </h2>
+                                        <h2 className="price-container">
+                                            {product.quantity} left!
+                                        </h2>
+                                    </div>
+                                    {currUser &&
+                                    currUser.id === product.user_id ? (
+                                        <h3 className="product-user-product">
+                                            This is your product!
+                                        </h3>
+                                    ) : (
+                                        currUser && (
+                                            <div className="product-cart-watchlist">
+                                                {isInCart ? (
+                                                    <span className="product-cart-text">
+                                                        In Cart
+                                                    </span>
+                                                ) : (
+                                                    <button
+                                                        className="product-cart-button"
+                                                        onClick={() =>
+                                                            handleAddToCart(
+                                                                product.id
+                                                            )
+                                                        }
+                                                    >
+                                                        Add to Cart
+                                                    </button>
+                                                )}
+                                                {
+                                                    currUser.watchlist ? (
+                                                        isWatchlisted ? (
+                                                            <span className="product-watchlisted-text">
+                                                                Watchlisted
+                                                            </span>
+                                                        ) : (
+                                                            <div className="product-add-to-watchlist-button">
+                                                                <OpenModalButton
+                                                                    buttonText="Add to Watchlist"
+                                                                    modalComponent={
+                                                                        <AddToWatchlist
+                                                                            productId={
+                                                                                product.id
+                                                                            }
+                                                                            watchlistId={
+                                                                                currUser
+                                                                                    .watchlist
+                                                                                    .id
+                                                                            }
+                                                                        />
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        )
+                                                    ) : null // Handle case when currUser.watchlist is not available
+                                                }
+                                            </div>
+                                        )
+                                    )}
                                 </div>
                             </div>
                             <div className="game-data-container">
                                 <div className="name-container">
-                                    <h2>Current Game:</h2>
-                                    <h3>
-                                        {product.game} (gen {product.generation}
-                                        )
-                                    </h3>
+                                    <h2>
+                                        Current Game: {product.game} (gen{" "}
+                                        {product.generation})
+                                    </h2>
                                 </div>
                                 <div className="description-image-container">
                                     {productImage?.[0]?.img_url && (
@@ -141,16 +252,8 @@ const OneProduct = () => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="quantity-price-container">
-                                <h2 className="price-container">
-                                    ${product.price}
-                                </h2>
-                                <h2 className="price-container">
-                                    {product.quantity} left!
-                                </h2>
-                            </div>
                             {currUser?.id === product.user_id && (
-                                <div className="modal-button-container">
+                                <div className="product-modal-button-container">
                                     <OpenModalButton
                                         buttonText="Edit Product"
                                         modalComponent={
