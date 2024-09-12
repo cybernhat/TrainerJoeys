@@ -11,7 +11,7 @@ const AddReview = ({ productId }) => {
     const dispatch = useDispatch();
     const [review, setReview] = useState("");
     const [thumbsUp, setThumbsUp] = useState(false);
-    const [thumbsDown, setThumbsDown] = useState(false);
+    const [thumbsDown, setThumbsDown] = useState(true); // Default to thumbs down
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [errors, setErrors] = useState({});
 
@@ -40,7 +40,7 @@ const AddReview = ({ productId }) => {
         };
 
         await dispatch(reviewActions.postReview(productId, reviewData));
-        console.log('success!')
+        console.log("success!");
         closeModal(); // Close modal after submission
     };
 
@@ -59,7 +59,7 @@ const AddReview = ({ productId }) => {
     return (
         <div id="modal-container">
             <h1>How was your experience with this product?</h1>
-            <form className='add-review-form' onSubmit={handleSubmit}>
+            <form className="add-review-form" onSubmit={handleSubmit}>
                 <textarea
                     className="review-text-area"
                     placeholder="Leave a review"

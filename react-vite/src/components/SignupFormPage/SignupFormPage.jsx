@@ -72,7 +72,7 @@ function SignupFormPage() {
                         onChange={(e) => setFirstName(e.target.value)}
                         required
                     />
-                    {errors.firstName && <span>{errors.firstName}</span>}
+                    {errors.firstName && <span className='error-p'>{errors.firstName}</span>}
                 </div>
                 <div className="signup-last-name-container">
                     <label>Last Name</label>
@@ -82,7 +82,7 @@ function SignupFormPage() {
                         onChange={(e) => setLastName(e.target.value)}
                         required
                     />
-                    {errors.lastName && <span>{errors.lastName}</span>}
+                    {errors.lastName && <span className='error-p'>{errors.lastName}</span>}
                 </div>
                 <div className="signup-email-container">
                     <label>Email</label>
@@ -92,7 +92,7 @@ function SignupFormPage() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    {errors.email && <span>{errors.email}</span>}
+                    {errors.email && <span className='error-p'>{errors.email}</span>}
                 </div>
                 <div className="signup-username-container">
                     <label>Username</label>
@@ -102,7 +102,7 @@ function SignupFormPage() {
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
-                    {errors.username && <span>{errors.username}</span>}
+                    {errors.username && <span className='error-p'>{errors.username}</span>}
                 </div>
                 <div className="signup-password-container">
                     <label>Password</label>
@@ -112,7 +112,7 @@ function SignupFormPage() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    {errors.password && <span>{errors.password}</span>}
+                    {errors.password && <span className='error-p'>{errors.password}</span>}
                 </div>
                 <div className="signup-confirm-password-container">
                     <label>Confirm Password</label>
@@ -122,7 +122,7 @@ function SignupFormPage() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />
-                    {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
+                    {errors.confirmPassword && <span className='error-p'>{errors.confirmPassword}</span>}
                 </div>
                 <button className="signup-modal-button" type="submit">
                     Sign Up

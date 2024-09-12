@@ -64,7 +64,7 @@ function LoginFormPage() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    {errors.email && <p>{errors.email}</p>}
+                    {errors.email && <p className='error-p'>{errors.email}</p>}
                 </div>
                 <div className="login-password-container">
                     <label>Password</label>
@@ -74,7 +74,7 @@ function LoginFormPage() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    {errors.password && <p>{errors.password}</p>}
+                    {errors.password && <p className='error-p'>{errors.password}</p>}
                 </div>
                 <div className="submit-buttons">
                     <button className="modal-button" type="submit">

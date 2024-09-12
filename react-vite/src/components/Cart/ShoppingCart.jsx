@@ -3,6 +3,8 @@ import * as cartActions from "../../redux/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import ThankYouModal from "./ThankYouModal";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 const ShoppingCart = () => {
     const dispatch = useDispatch();
@@ -14,10 +16,12 @@ const ShoppingCart = () => {
     );
     const cartItems = carts?.cart_items || [];
 
+    // Handle product removal
     const handleSubmit = (productId) => {
         dispatch(cartActions.deleteProductFromCart(carts.id, productId));
     };
 
+    // Handle cart clearance and show the ThankYouModal immediately
     const handleClearCart = (cartId) => {
         dispatch(cartActions.clearCartItems(cartId));
     };
@@ -74,9 +78,13 @@ const ShoppingCart = () => {
                 )}
                 {cartItems.length > 0 && (
                     <div id="button-container">
-                        <button onClick={() => handleClearCart(carts.id)}>
-                            Checkout
-                        </button>
+                        {/* Use OpenModalButton to handle opening modal */}
+                        <OpenModalButton
+                            buttonText="Checkout"
+                            onButtonClick={() => handleClearCart(carts.id)} // Perform checkout logic
+                            modalComponent={<ThankYouModal />} // Show ThankYouModal on checkout
+                            className='checkout-button'
+                        />
                     </div>
                 )}
             </div>

@@ -187,7 +187,7 @@ const UploadPicture = () => {
                         ))}
                     </select>
                     {hasSubmitted && errors.pokemon && (
-                        <span>{errors.pokemon}</span>
+                        <span className='error-p'>{errors.pokemon}</span>
                     )}
                 </div>
                 <div className="container-label-input-image">
@@ -207,7 +207,7 @@ const UploadPicture = () => {
                     </label>
                     {hasSubmitted && errors.productImageUrl}
                     {hasSubmitted && productImageError && (
-                        <span>{productImageError}</span>
+                        <span className='error-p'>{productImageError}</span>
                     )}
                 </div>
                 {productImagePreview && (
@@ -248,7 +248,7 @@ const UploadPicture = () => {
                             placeholder=""
                         />
                         {hasSubmitted && errors.level && (
-                            <span>{errors.level}</span>
+                            <span className='error-p'>{errors.level}</span>
                         )}
                     </div>
                     <div className="ability-container">
@@ -260,7 +260,7 @@ const UploadPicture = () => {
                             placeholder="Enter ability"
                         />
                         {hasSubmitted && errors.ability && (
-                            <span>{errors.ability}</span>
+                            <span className='error-p'>{errors.ability}</span>
                         )}
                     </div>
                 </div>
@@ -274,7 +274,7 @@ const UploadPicture = () => {
                             placeholder="Enter held item"
                         />
                         {hasSubmitted && errors.item && (
-                            <span>{errors.item}</span>
+                            <span className='error-p'>{errors.item}</span>
                         )}
                     </div>
                     <div className="nature-container">
@@ -286,7 +286,7 @@ const UploadPicture = () => {
                             placeholder="Enter nature"
                         />
                         {hasSubmitted && errors.nature && (
-                            <span>{errors.nature}</span>
+                            <span className='error-p'>{errors.nature}</span>
                         )}
                     </div>
                 </div>
@@ -300,7 +300,7 @@ const UploadPicture = () => {
                             placeholder="Enter product's game"
                         />
                         {hasSubmitted && errors.game && (
-                            <span>{errors.game}</span>
+                            <span className='error-p'>{errors.game}</span>
                         )}
                     </div>
                     <div className="generation-container">
@@ -318,7 +318,7 @@ const UploadPicture = () => {
                             placeholder="Enter game's generation"
                         />
                         {hasSubmitted && errors.generation && (
-                            <span>{errors.generation}</span>
+                            <span className='error-p'>{errors.generation}</span>
                         )}
                     </div>
                 </div>
@@ -346,7 +346,7 @@ const UploadPicture = () => {
                             placeholder=""
                         />
                         {hasSubmitted && errors.quantity && (
-                            <span>{errors.quantity}</span>
+                            <span className='error-p'>{errors.quantity}</span>
                         )}
                     </div>
                     <div className="value-container">
@@ -358,7 +358,7 @@ const UploadPicture = () => {
                             placeholder=""
                         />
                         {hasSubmitted && errors.price && (
-                            <span>{errors.price}</span>
+                            <span className='error-p'>{errors.price}</span>
                         )}
                     </div>
                 </div>
@@ -371,7 +371,7 @@ const UploadPicture = () => {
                         className="description-text"
                     />
                     {hasSubmitted && errors.description && (
-                        <span>{errors.description}</span>
+                        <span className='error-p'>{errors.description}</span>
                     )}
                 </div>
                 <div className="moves-container">
@@ -384,7 +384,7 @@ const UploadPicture = () => {
                             placeholder="Mandatory"
                         />
                         {hasSubmitted && errors.move_1 && (
-                            <span>{errors.move_1}</span>
+                            <span className='error-p'>{errors.move_1}</span>
                         )}
                     </div>
                     <div className="move-2-container">
