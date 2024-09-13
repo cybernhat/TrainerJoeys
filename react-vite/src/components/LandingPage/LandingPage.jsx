@@ -23,7 +23,7 @@ const LandingPage = () => {
             <div className="welcome-title">
                 <h1 className="welcome-h1">Welcome To</h1>
                 <img
-                    src="./public/official_logo.png"
+                    src="../../../official_logo.png"
                     className="welcome-logo"
                 />
                 <h2 className="description-h2">
@@ -32,7 +32,7 @@ const LandingPage = () => {
                 <NavLink className="shop-link" to="/home">
                     <h1 className="link-to-shop">Shop Now!</h1>
                 </NavLink>
-                <img className="joey-pic" src="./public/Joey.webp" />
+                <img className="joey-pic" src="../../../joey-png.png" />
                 <h1 className="featured-products">Featured Products:</h1>
                 <Carousel className="featured-carousel">
                     {featuredProducts.map((product) => (
