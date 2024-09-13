@@ -36,7 +36,11 @@ const LandingPage = () => {
                 <h1 className="featured-products">Featured Products:</h1>
                 <Carousel className="featured-carousel">
                     {featuredProducts.map((product) => (
-                        <NavLink to={`/products/${product.id}`} key={product.id} className="carousel-item">
+                        <NavLink
+                            to={`/products/${product.id}`}
+                            key={product.id}
+                            className="carousel-item"
+                        >
                             <div className="homepage-type-container"></div>
                             <h2>By {product.user.username}</h2>
                             <img
