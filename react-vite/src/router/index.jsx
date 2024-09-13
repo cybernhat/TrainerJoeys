@@ -9,13 +9,18 @@ import EditProduct from '../components/Product/EditProduct';
 import UserPage from '../components/UserPage/UserPage';
 import ShoppingCart from '../components/Cart/ShoppingCart';
 import ProfilePage from '../components/Profile/Profile';
-
+import LandingPage
+ from '../components/LandingPage/LandingPage';
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
         path: "/",
+        element: <LandingPage/>
+      },
+      {
+        path: "/home",
         element: <HomePage/>,
       },
       {

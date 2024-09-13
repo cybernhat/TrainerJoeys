@@ -9,6 +9,7 @@ a,
 p {
     font-weight: normal;
     font-family: "Pixelify Sans", sans-serif;
+    color: black;
 }
 
 /* Ensure that html and body take up full height */

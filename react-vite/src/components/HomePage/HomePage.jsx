@@ -19,6 +19,7 @@ const HomePage = () => {
     const carts = Object.values(cartsObj);
 
     const [localCart, setLocalCart] = useState([]);
+    const [selectedType, setSelectedType] = useState("All");
 
     const userWatchlist =
         (currUser &&
@@ -55,11 +56,49 @@ const HomePage = () => {
         console.log("Success!");
     };
 
+    // Get unique Pokémon types for the filter
+    const uniqueTypes = [
+        "All",
+        ...new Set(
+            products.flatMap((product) =>
+                [product.pokemon.type_1, product.pokemon.type_2].filter(Boolean)
+            )
+        ),
+    ];
+
+    // Filter products based on the selected type
+    const filteredProducts =
+        selectedType === "All"
+            ? products
+            : products.filter(
+                  (product) =>
+                      product.pokemon.type_1 === selectedType ||
+                      product.pokemon.type_2 === selectedType
+              );
+
     return (
         <div id="homepage-container">
             <h1>Products Listing</h1>
+            <div className="filter-container">
+                <label htmlFor="type-filter">
+                    <h3>Filter by Type:</h3>
+                </label>
+                <select
+                    id="type-filter"
+                    value={selectedType}
+                    onChange={(e) => setSelectedType(e.target.value)}
+                >
+                    {uniqueTypes.map((type) => (
+                        <option key={type} value={type}>
+                            {type}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <div className="product-list-container">
-                {products.map((product) => {
+                {filteredProducts.map((product) => {
+                    const productPokemon = product.pokemon;
+
                     const pokemonName =
                         product.pokemon.name.charAt(0).toUpperCase() +
                         product.pokemon.name.slice(1);
@@ -84,14 +123,29 @@ const HomePage = () => {
                                         Game Generation: {product.generation}
                                     </h4>
                                 </div>
+                                <div className="homepage-type-container">
+                                    <h3
+                                        className={`pokemon-type ${productPokemon?.type_1.toLowerCase()}`}
+                                    >
+                                        {productPokemon.type_1}
+                                    </h3>
+                                    {productPokemon?.type_2 && (
+                                        <h3
+                                            className={`pokemon-type ${productPokemon?.type_2.toLowerCase()}`}
+                                        >
+                                            {productPokemon?.type_2}
+                                        </h3>
+                                    )}
+                                </div>
                                 <div className="pokemon-image">
                                     <img
                                         src={product.pokemon.pokemon_img}
                                         alt={pokemonName}
                                     />
                                 </div>
+
                                 <div className="name-level">
-                                    <h3>{pokemonName}</h3>
+                                    <h2>{pokemonName}</h2>
                                     <h4>Level {product.level}</h4>
                                 </div>
                                 <div className="ability-nature-item">

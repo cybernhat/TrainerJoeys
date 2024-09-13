@@ -19,8 +19,6 @@ const ProfilePage = () => {
     const watchlistsObj = useSelector((state) => state.watchlist);
     const watchlists = Object.values(watchlistsObj);
 
-    console.log("CCCCCCCCCCCCC", watchlists);
-
     const userWatchlist =
         watchlists.find(
             (watchlist) => watchlist.user_id === parseInt(userId, 10)
@@ -59,7 +57,6 @@ const ProfilePage = () => {
                         className={activeTab === "products" ? "active" : ""}
                         onClick={() => handleTabChange("products")}
                     >
-                        {" "}
                         <h3 className="product-component-h3">Products</h3>
                     </div>
                     <div
@@ -73,76 +70,85 @@ const ProfilePage = () => {
             <div id="profile-listings-container">
                 {activeTab === "products" && (
                     <div className="product-list-container">
-                        {userProducts.map((product) => {
-                            const pokemonName =
-                                product.pokemon.name.charAt(0).toUpperCase() +
-                                product.pokemon.name.slice(1);
+                        {userProducts.length === 0 ? (
+                          <h3>This user hasn&apos;t listed any products yet</h3>
+                        ) : (
+                            userProducts.map((product) => {
+                                const pokemonName =
+                                    product.pokemon.name.charAt(0).toUpperCase() +
+                                    product.pokemon.name.slice(1);
 
-                            return (
-                                <div
-                                    className="product-container"
-                                    key={product.id}
-                                >
-                                    <NavLink to={`/products/${product.id}`}>
-                                        <div className="game-gen-container">
-                                            <h3>Game: {product.game}</h3>
-                                            <h4>
-                                                Game Generation:{" "}
-                                                {product.generation}
-                                            </h4>
-                                        </div>
-                                        <div className="pokemon-image">
-                                            <img
-                                                src={
-                                                    product.pokemon.pokemon_img
-                                                }
-                                                alt={pokemonName}
-                                            />
-                                        </div>
-                                        <div className="name-level">
-                                            <h3>{pokemonName}</h3>
-                                            <h4>Level {product.level}</h4>
-                                        </div>
-                                        <div className="ability-nature-item">
-                                            <h4>Ability: {product.ability}</h4>
-                                            <h4>Nature: {product.nature}</h4>
-                                            <h4>Item: {product.item}</h4>
-                                        </div>
-                                        <div className="move-container">
-                                            <h5>{product.move_1}</h5>
-                                            <h5>{product.move_2}</h5>
-                                            <h5>{product.move_3}</h5>
-                                            <h5>{product.move_4}</h5>
-                                        </div>
-                                        <div className="shiny-container">
-                                            <h2
-                                                className={
-                                                    product.shiny
-                                                        ? "shiny"
-                                                        : "not-shiny"
-                                                }
-                                            >
-                                                {product.shiny
-                                                    ? "Shiny!"
-                                                    : "Not Shiny"}
-                                            </h2>
-                                        </div>
-                                        <div className="price-container">
-                                            <h3>${product.price}</h3>
-                                        </div>
-                                    </NavLink>
-                                </div>
-                            );
-                        })}
+                                return (
+                                    <div
+                                        className="product-container"
+                                        key={product.id}
+                                    >
+                                        <NavLink to={`/products/${product.id}`}>
+                                            <div className="game-gen-container">
+                                                <h3>Game: {product.game}</h3>
+                                                <h4>
+                                                    Game Generation:{" "}
+                                                    {product.generation}
+                                                </h4>
+                                            </div>
+                                            <div className="pokemon-image">
+                                                <img
+                                                    src={
+                                                        product.pokemon
+                                                            .pokemon_img
+                                                    }
+                                                    alt={pokemonName}
+                                                />
+                                            </div>
+                                            <div className="name-level">
+                                                <h3>{pokemonName}</h3>
+                                                <h4>Level {product.level}</h4>
+                                            </div>
+                                            <div className="ability-nature-item">
+                                                <h4>
+                                                    Ability: {product.ability}
+                                                </h4>
+                                                <h4>
+                                                    Nature: {product.nature}
+                                                </h4>
+                                                <h4>Item: {product.item}</h4>
+                                            </div>
+                                            <div className="move-container">
+                                                <h5>{product.move_1}</h5>
+                                                <h5>{product.move_2}</h5>
+                                                <h5>{product.move_3}</h5>
+                                                <h5>{product.move_4}</h5>
+                                            </div>
+                                            <div className="shiny-container">
+                                                <h2
+                                                    className={
+                                                        product.shiny
+                                                            ? "shiny"
+                                                            : "not-shiny"
+                                                    }
+                                                >
+                                                    {product.shiny
+                                                        ? "Shiny!"
+                                                        : "Not Shiny"}
+                                                </h2>
+                                            </div>
+                                            <div className="price-container">
+                                                <h3>${product.price}</h3>
+                                            </div>
+                                        </NavLink>
+                                    </div>
+                                );
+                            })
+                        )}
                     </div>
                 )}
                 {activeTab === "watchlist" && (
                     <div className="product-list-container">
                         {userWatchlist.length === 0 ? (
-                            <h1>
+                            <h3>
                                 This user does not have any products on their
                                 watchlist yet
-                            </h1>
+                            </h3>
                         ) : (
                             userWatchlist.map((product) => {
                                 const pokemonName =

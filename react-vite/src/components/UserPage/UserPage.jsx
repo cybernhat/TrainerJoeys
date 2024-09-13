@@ -168,7 +168,7 @@ const UserPage = () => {
                             })
                         ) : (
                             <h3 className="empty-products-message">
-                                No products yet. Click on Create Product to make one!
+                                No products yet. Click on List Pokemon to make one!
                             </h3>
                         )}
                     </div>

@@ -185,3 +185,26 @@ NavLink {
     margin-bottom: 10px;
     text-align: center;
 }
+
+.homepage-type-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Align items vertically */
+    gap: 1em; /* Add some space between types if there are two */
+    transform: translate(0px, 10px);
+    margin-bottom: 20px
+}
+
+/* Center the types container if there is only one type */
+.homepage-type-container h3 {
+    text-align: center; /* Center text inside each type */
+}
+
+.filter-container {
+    margin-bottom: 20px; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between label and dropdown */
+    transform: translate(30px, -60px)
+}

@@ -102,7 +102,9 @@ const OneProduct = () => {
         (watchlistProduct) => watchlistProduct.id === product.id
     );
 
-    const isInCart = localCart?.some((cartItem) => cartItem?.id === product?.id);
+    const isInCart = localCart?.some(
+        (cartItem) => cartItem?.id === product?.id
+    );
 
     return (
         <div id="product-page-container">
