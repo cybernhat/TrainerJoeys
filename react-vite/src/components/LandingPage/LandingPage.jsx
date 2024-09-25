@@ -1,9 +1,8 @@
 import "./LandingPage.css";
 import { NavLink } from "react-router-dom";
 import * as productActions from "../../redux/product";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Carousel from "react-elastic-carousel";
 
 const LandingPage = () => {
     const dispatch = useDispatch();
@@ -11,8 +10,13 @@ const LandingPage = () => {
     const productsObj = useSelector((state) => state.product);
     const products = Object.values(productsObj);
 
-    // Select the first 5 products
-    const featuredProducts = products.slice(0, 6);
+    const featuredProducts = useMemo(() => {
+        if (products.length > 0) {
+            return products.sort(() => 0.5 - Math.random()).slice(0, 5);
+        }
+
+        return [];
+    }, [products]);
 
     useEffect(() => {
         dispatch(productActions.fetchAllProducts());
@@ -32,36 +36,16 @@ const LandingPage = () => {
                 <NavLink className="shop-link" to="/home">
                     <h1 className="link-to-shop">Shop Now!</h1>
                 </NavLink>
-                <img className="joey-pic" src="../../../joey-png.png" />
                 <h1 className="featured-products">Featured Products:</h1>
-                <Carousel className="featured-carousel">
+                <div className="product-carousel-container">
                     {featuredProducts.map((product) => (
-                        <NavLink
-                            to={`/products/${product.id}`}
-                            key={product.id}
-                            className="carousel-item"
-                        >
-                            <div className="homepage-type-container"></div>
-                            <h2>By {product.user.username}</h2>
-                            <img
-                                src={product.pokemon.pokemon_img}
-                                alt={product.pokemon.name}
-                                className="carousel-image"
-                            />
-                            <div className="info-container">
-                                <div className="name-price-container">
-                                    <h2 className="carousel-product-name">
-                                        {product.pokemon.name}
-                                    </h2>
-                                    <h3 className="carousel-product-level">
-                                        Level {product.level}
-                                    </h3>
-                                    <h2>${product.price}</h2>
-                                </div>
-                            </div>
-                        </NavLink>
+                        <img
+                            className="product-carousel-img"
+                            src={product.pokemon?.pokemon_img}
+                            alt={product.pokemon.name}
+                        />
                     ))}
-                </Carousel>
+                </div>
             </div>
         </div>
     );
