@@ -67,7 +67,6 @@ const OneProduct = () => {
     const handleAddToCart = (productId) => {
         dispatch(cartActions.addProductToCart(userCartId, productId)).then(
             () => {
-                // Update local state to reflect the change
                 setLocalCart([...localCart, { id: productId }]);
             }
         );
