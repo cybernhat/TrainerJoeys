@@ -70,7 +70,6 @@ const OneProduct = () => {
                 setLocalCart([...localCart, { id: productId }]);
             }
         );
-        console.log("Success!");
     };
 
     const sentiment =
