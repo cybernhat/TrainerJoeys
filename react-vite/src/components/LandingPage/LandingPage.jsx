@@ -37,15 +37,6 @@ const LandingPage = () => {
                     <h1 className="link-to-shop">Shop Now!</h1>
                 </NavLink>
                 <h1 className="featured-products">Featured Products:</h1>
-                <div className="product-carousel-container">
-                    {featuredProducts.map((product) => (
-                        <img
-                            className="product-carousel-img"
-                            src={product.pokemon?.pokemon_img}
-                            alt={product.pokemon.name}
-                        />
-                    ))}
-                </div>
             </div>
         </div>
     );
