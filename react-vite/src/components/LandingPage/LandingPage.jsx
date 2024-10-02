@@ -8,7 +8,7 @@ const LandingPage = () => {
     const dispatch = useDispatch();
 
     const productsObj = useSelector((state) => state.product);
-    const products = Object.values(productsObj);
+    // const products = Object.values(productsObj);
 
     // const featuredProducts = useMemo(() => {
     //     if (products.length > 0) {
