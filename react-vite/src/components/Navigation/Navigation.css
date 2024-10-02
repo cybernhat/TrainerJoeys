@@ -44,27 +44,27 @@
     position: relative;
 }
 .shopping-cart-container {
-    text-decoration: none; /* Remove underline */
-    color: black; /* Change color to black, or your preferred color */
-    display: flex; /* Align items in a row */
-    align-items: center; /* Vertically center items */
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
     border: 2px solid black;
     padding: 10px;
     border-radius: 10px;
 }
 
 .cart-item-count {
-    background-color: red; /* Background color */
-    color: white; /* Text color */
-    border-radius: 50%; /* Make it round */
+    background-color: red;
+    color: white;
+    border-radius: 50%;
     padding: 5px;
-    margin-left: 5px; /* Space between icon and count */
-    font-size: 20px; /* Adjust font size as needed */
+    margin-left: 5px;
+    font-size: 20px;
     width: 20px;
     height: 20px;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cart-icon {
@@ -73,29 +73,29 @@
 }
 
 .profile-button {
-    background-color: transparent; /* or any other color you prefer */
+    background-color: transparent;
     border: none;
-    color: #fff; /* or any color that matches your theme */
+    color: #fff;
     display: flex;
     align-items: center;
-    font-size: 16px; /* Adjust font size as needed */
+    font-size: 16px;
     cursor: pointer;
 }
 
 .profile-button .user-icon {
-    margin-right: 8px; /* Space between icon and text */
-    font-size: 20px; /* Adjust icon size as needed */
+    margin-right: 8px;
+    font-size: 20px;
 }
 
 .icon-button {
-    background: none; /* Remove background */
-    border: none; /* Remove border */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-    cursor: pointer; /* Optional: Show pointer on hover */
-    display: flex; /* Keep the icon aligned */
-    align-items: center; /* Center the icon vertically */
-    justify-content: center; /* Center the icon horizontally */
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-icon {
@@ -104,8 +104,8 @@
 }
 
 .create-product-button-container {
-    color: black; /* Change font color to purple */
-    text-decoration: none; /* Remove the underline */
+    color: black;
+    text-decoration: none;
     font-size: 30px;
     margin-top: 10px;
 }
@@ -129,8 +129,8 @@
     right: -70px;
     transform: translateX(
         10px
-    ); /* Optional: Adjust the horizontal position further */
-    z-index: 1000; /* Ensure it appears above other elements */
+    );
+    z-index: 1000;
 }
 
 .user-profile-list {
@@ -141,7 +141,7 @@
 .logout-button {
     background-color: #c3b091;
     color: black;
-    border: none; 
+    border: none;
     padding: 5px 15px;
     font-size: 16px;
     cursor: pointer;
@@ -188,10 +188,10 @@
     font-size: 20px;
     color: black;
     height: 30px;
-    width: 120px; /* Adjust as needed */
-    background-color: #c3b091; /* Optional, for better visibility */
-    border: 1px solid black; /* Optional, for better visibility */
-    border-radius: 4px; /* Optional, for rounded corners */
+    width: 120px;
+    background-color: #c3b091;
+    border: 1px solid black;
+    border-radius: 4px;
   }
 
   .nav-logout-button button {
