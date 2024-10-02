@@ -10,13 +10,13 @@ const LandingPage = () => {
     const productsObj = useSelector((state) => state.product);
     const products = Object.values(productsObj);
 
-    const featuredProducts = useMemo(() => {
-        if (products.length > 0) {
-            return products.sort(() => 0.5 - Math.random()).slice(0, 5);
-        }
+    // const featuredProducts = useMemo(() => {
+    //     if (products.length > 0) {
+    //         return products.sort(() => 0.5 - Math.random()).slice(0, 5);
+    //     }
 
-        return [];
-    }, [products]);
+    //     return [];
+    // }, [products]);
 
     useEffect(() => {
         dispatch(productActions.fetchAllProducts());
