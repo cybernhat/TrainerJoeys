@@ -140,13 +140,13 @@
 
 .logout-button {
     background-color: #c3b091;
-    color: black; 
-    border: none; /* Remove default button border */
-    padding: 5px 15px; /* Adjust padding as needed */
-    font-size: 16px; /* Adjust font size as needed */
-    cursor: pointer; /* Change cursor to pointer */
-    border-radius: 5px; /* Optional: rounded corners */
-    margin: 5px; /* Optional: space between buttons */
+    color: black;
+    border: none; 
+    padding: 5px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
 }
 
 .user-navlink-container {
