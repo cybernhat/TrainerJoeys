@@ -49,14 +49,12 @@ const HomePage = () => {
     const handleAddToCart = (productId) => {
         dispatch(cartActions.addProductToCart(userCartId, productId)).then(
             () => {
-                // Update local state to reflect the change
                 setLocalCart([...localCart, { id: productId }]);
             }
         );
         console.log("Success!");
     };
 
-    // Get unique Pokémon types for the filter
     const uniqueTypes = [
         "All",
         ...new Set(
@@ -66,7 +64,6 @@ const HomePage = () => {
         ),
     ];
 
-    // Filter products based on the selected type
     const filteredProducts =
         selectedType === "All"
             ? products
@@ -221,7 +218,7 @@ const HomePage = () => {
                                                         />
                                                     </div>
                                                 )
-                                            ) : null // Handle case when currUser.watchlist is not available
+                                            ) : null
                                         }
                                     </div>
                                 )
