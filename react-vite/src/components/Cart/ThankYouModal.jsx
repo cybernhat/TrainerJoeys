@@ -11,7 +11,10 @@ const ThankYouModal = () => {
     }
     return (
         <div id='thank-you-modal-container'>
-            <span className='thank-you-span'>Thank you for your purchases! A notification will be sent to the seller. Happy battling!</span>
+            <span className='thank-you-span'>Thank you for your purchases! A notification will be sent to the seller. Happy battling!
+
+                
+            </span>
             <button className='thank-you-modal-button' onClick={handleSubmit}>
                 Continue Shopping
             </button>

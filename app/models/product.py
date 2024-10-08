@@ -17,7 +17,7 @@ class Product(db.Model):
     pokemon_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("pokemon.id")), nullable=False
     )
-    # img_url = db.Column(db.String(1000), nullable=False)
+
     level = db.Column(db.Integer, nullable=False)
     ability = db.Column(db.String(500), nullable=False)
     item = db.Column(db.String(500))
