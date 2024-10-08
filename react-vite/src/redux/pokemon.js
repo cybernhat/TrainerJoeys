@@ -23,7 +23,7 @@ function pokemonReducer(state = initialState, action) {
         case GET_ALL_POKEMON: {
             const newState = { ...state };
             action.pokemon.forEach((species) => {
-                newState[species.id] = species; // Corrected assignment
+                newState[species.id] = species; 
             });
             return newState;
         }
