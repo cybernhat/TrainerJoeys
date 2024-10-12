@@ -7,17 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 const LandingPage = () => {
     const dispatch = useDispatch();
 
-    // const productsObj = useSelector((state) => state.product);
-    // const products = Object.values(productsObj);
-
-    // const featuredProducts = useMemo(() => {
-    //     if (products.length > 0) {
-    //         return products.sort(() => 0.5 - Math.random()).slice(0, 5);
-    //     }
-
-    //     return [];
-    // }, [products]);
-
     useEffect(() => {
         dispatch(productActions.fetchAllProducts());
     }, [dispatch]);
