@@ -29,7 +29,6 @@ class Product(db.Model):
     price = db.Column(Numeric(10,2), nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
-    # New columns for moves
     move_1 = db.Column(db.String(1000), nullable=False)
     move_2 = db.Column(db.String(1000))
     move_3 = db.Column(db.String(1000))
