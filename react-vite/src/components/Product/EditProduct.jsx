@@ -169,7 +169,6 @@ const EditProduct = ({ productId }) => {
         }
 
         await dispatch(productActions.fetchOneProduct(productId));
-        // navigate(`/products/${productId}`)
         closeModal();
     };
 

@@ -32,8 +32,8 @@ const UploadPicture = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const [productImageUrl, setProductImageUrl] = useState("");
-    const [productImagePreview, setProductImagePreview] = useState(""); // store image preview URL
-    const [productImageFilename, setProductImageFilename] = useState(""); // store the image file name
+    const [productImagePreview, setProductImagePreview] = useState(""); 
+    const [productImageFilename, setProductImageFilename] = useState("");
     const [productImageLoading, setProductImageLoading] = useState(false);
     const [productImageError, setProductImageError] = useState("");
 
