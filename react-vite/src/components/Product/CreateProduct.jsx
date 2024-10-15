@@ -218,11 +218,7 @@ const UploadPicture = () => {
                         className="product-image"
                     />
                 )}
-                {/* {productImageFilename && (
-                    <span style={{ color: "#999", fontSize: "12px" }}>
-                        {productImageFilename}
-                    </span>
-                )} */}
+
                 {productImageLoading && (
                     <p style={{ color: "#999", fontSize: "12px" }}>
                         Uploading product image...
