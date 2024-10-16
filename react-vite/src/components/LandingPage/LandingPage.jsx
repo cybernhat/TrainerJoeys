@@ -2,7 +2,7 @@ import "./LandingPage.css";
 import { NavLink } from "react-router-dom";
 import * as productActions from "../../redux/product";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const LandingPage = () => {
     const dispatch = useDispatch();
