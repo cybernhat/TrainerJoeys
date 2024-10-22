@@ -1,16 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
 import { FaCartShopping } from "react-icons/fa6";
-
 import * as cartActions from "../../redux/cart";
 
 function Navigation() {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
 
     const user = useSelector((state) => state.session.user);
     const cartsObj = useSelector((state) => state.cart);
@@ -23,9 +21,16 @@ function Navigation() {
 
     const [searchItem, setSearchItem] = useState("");
 
-    const handleSearchChange = () => {
-        return
+    const handleSearchChange = (e) => {
+        setSearchItem(e.target.value);
     }
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter" && searchItem.trim()) {
+            navigate(`/search/${searchItem.trim().toLowerCase()}`);
+        }
+    }
+
     useEffect(() => {
         dispatch(cartActions.fetchAllCarts());
     }, [dispatch]);
@@ -46,9 +51,11 @@ function Navigation() {
                 type='search'
                 placeholder='Search...'
                 value={searchItem}
-                onCHange={handleSearchChange}
+                onChange={handleSearchChange}
+                onKeyDown={handleKeyDown}
                 />
             </div>
+
             <li className="login-logout-container">
                 {user ? (
                     <div id="profile-container">
