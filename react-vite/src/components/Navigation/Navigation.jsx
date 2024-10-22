@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { FaCartShopping } from "react-icons/fa6";
 
@@ -21,6 +21,11 @@ function Navigation() {
         : null;
     const cartItemCount = userCart ? userCart.cart_items.length : 0;
 
+    const [searchItem, setSearchItem] = useState("");
+
+    const handleSearchChange = () => {
+        return
+    }
     useEffect(() => {
         dispatch(cartActions.fetchAllCarts());
     }, [dispatch]);
@@ -36,6 +41,14 @@ function Navigation() {
                     />
                 </NavLink>
             </li>
+            <div>
+                <input
+                type='search'
+                placeholder='Search...'
+                value={searchItem}
+                onCHange={handleSearchChange}
+                />
+            </div>
             <li className="login-logout-container">
                 {user ? (
                     <div id="profile-container">
