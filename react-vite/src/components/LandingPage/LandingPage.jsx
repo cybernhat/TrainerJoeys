@@ -23,7 +23,7 @@ const LandingPage = () => {
                     Have a rare or powerful Pokemon? List them for sale here!
                 </h2>
                 <NavLink className="shop-link" to="/home">
-                    <h1 className="link-to-shop">Shop Now!</h1>
+                    <h1 className="link-to-shop">Click Here to Browse Products</h1>
                 </NavLink>
                 <h1 className="featured-products">Featured Products:</h1>
             </div>
