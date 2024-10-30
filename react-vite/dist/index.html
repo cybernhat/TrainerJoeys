@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/png" href="website-icon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pixelify+Sans:wght@400..700&display=swap"
+            rel="stylesheet"
+        />
+        <title>Trainer Joey's</title>
+        <link rel="stylesheet" href="path-to-your-styles.css" />
+      <script type="module" crossorigin src="/assets/index-6a9f58e9.js"></script>
+      <link rel="stylesheet" href="/assets/index-05200763.css">
+    </head>
+    <body>
+        <div class="background-wrapper">
+            <div id="root"></div>
+        </div>
+        <audio id="background-audio" loop>
+            <source src="../driftveil.mp3" type="audio/mp3" />
+            Your browser does not support the audio tag.
+        </audio>
+        
+        <script>
+            const playButton = document.getElementById('play-btn');
+            const audio = document.getElementById('background-audio');
+
+            playButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.style.display = 'none'; // Hide the button after playing
+                }
+            });
+        </script>
+    </body>
+</html>
