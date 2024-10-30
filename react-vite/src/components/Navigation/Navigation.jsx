@@ -46,7 +46,7 @@ function Navigation() {
                     />
                 </NavLink>
             </li>
-            <div>
+            {/* <div>
                 <input
                 type='search'
                 placeholder='Search...'
@@ -54,7 +54,7 @@ function Navigation() {
                 onChange={handleSearchChange}
                 onKeyDown={handleKeyDown}
                 />
-            </div>
+            </div> */}
 
             <li className="login-logout-container">
                 {user ? (
