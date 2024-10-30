@@ -1,21 +1,39 @@
-# Flask React Project
+# Trainer Joey's
 
-This is the starter for the Flask React project.
+Trainer Joey's is a full-stack project and is an e-commerce site for in-game Pokemon purchases. Trainer Joey's has three full CRUD features, products, cart, and reviews, and a partial CRUD feature, watchlist. Trainer Joey's UI will be constantly updated in the future.
 
-## Getting started
+# Languages
 
-1. Clone this repository (only this branch).
+- Python
+- Javascript
 
-2. Install dependencies.
+# Backend
+- Flask
+- SQLAlchemy
+- SQLite
 
-   ```bash
-   pipenv install -r requirements.txt
-   ```
+# Frontend
+- React with Redux
+- HTML
+- CSS
 
-3. Create a __.env__ file based on the example with proper settings for your
-   development environment.
+# Hosting Service
 
-4. Make sure the SQLite3 database connection URL is in the __.env__ file.
+- Render.com
+
+## Local Launch Instruction
+
+1. Clone this repository.
+
+2. Install dependencies with
+
+      ```bash
+      pipenv install -r requirements.txt
+      ```
+
+3. Create a **.env** file based on the example with proper settings for your development environment.
+
+4. Make sure the SQLite3 database connection URL is in the **.env** file.
 
 5. This starter organizes all tables inside the `flask_schema` schema, defined
    by the `SCHEMA` environment variable.  Replace the value for
@@ -40,10 +58,6 @@ This is the starter for the Flask React project.
    ```bash
    flask run
    ```
-
-7. The React frontend has no styling applied. Copy the __.css__ files from your
-   Authenticate Me project into the corresponding locations in the
-   __react-vite__ folder to give your project a unique look.
 
 8. To run the React frontend in development, `cd` into the __react-vite__
    directory and run `npm i` to install dependencies. Next, run `npm run build`
