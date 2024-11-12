@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
     )
     watchlist = db.relationship(
         "Watchlist", back_populates="user", uselist=False, cascade="all, delete-orphan"
-    )  # Ensures one-to-one
+    )
 
     @property
     def password(self):
