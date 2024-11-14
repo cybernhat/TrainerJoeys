@@ -15,10 +15,6 @@
         <div class="background-wrapper">
             <div id="root"></div>
         </div>
-        <audio id="background-audio" loop>
-            <source src="../driftveil.mp3" type="audio/mp3" />
-            Your browser does not support the audio tag.
-        </audio>
         <script type="module" src="/src/main.jsx"></script>
         <script>
             const playButton = document.getElementById('play-btn');
@@ -27,7 +23,7 @@
             playButton.addEventListener('click', () => {
                 if (audio.paused) {
                     audio.play();
-                    playButton.style.display = 'none'; // Hide the button after playing
+                    playButton.style.display = 'none';
                 }
             });
         </script>
