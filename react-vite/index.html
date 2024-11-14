@@ -16,16 +16,5 @@
             <div id="root"></div>
         </div>
         <script type="module" src="/src/main.jsx"></script>
-        <script>
-            const playButton = document.getElementById('play-btn');
-            const audio = document.getElementById('background-audio');
-
-            playButton.addEventListener('click', () => {
-                if (audio.paused) {
-                    audio.play();
-                    playButton.style.display = 'none';
-                }
-            });
-        </script>
     </body>
 </html>
