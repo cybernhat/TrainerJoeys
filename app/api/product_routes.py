@@ -32,7 +32,7 @@ def get_product_by_id(product_id):
 def post_product():
     data = request.json  # Get the JSON data from the request
 
-    # Validate the data if needed
+
     if not data:
         return jsonify({"message": "No data provided"}), 400
 
