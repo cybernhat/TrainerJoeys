@@ -37,7 +37,7 @@ def post_product():
         return jsonify({"message": "No data provided"}), 400
 
     # You may want to manually handle validation or use a schema validation library
-    shiny = data.get("shiny", False)  # Default to False if not provided
+    shiny = data.get("shiny", False)  
 
     new_product = Product(
         user_id=current_user.id,
